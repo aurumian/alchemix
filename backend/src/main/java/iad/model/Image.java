@@ -10,8 +10,13 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "image_seq")
     private long imageId;
 
-    @Lob
     private byte[] data;
+
+    public Image(){ }
+
+    public Image(byte[] data){
+        this.data = data;
+    }
 
     public long getImageId() {
         return imageId;
