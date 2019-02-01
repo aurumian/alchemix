@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: "bar"
+        name: "PersonalBar"
     }
 </script>
 
@@ -27,8 +27,4 @@
         margin-left: 15%;
         vertical-align: center;
     }
-    img{
-
-    }
-
 </style>
