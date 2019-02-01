@@ -1,16 +1,17 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <UnityGame msg="Welcome to Your Vue.js App"/>
+  <div>
+    <bar></bar>
   </div>
 </template>
 
 <script>
 import UnityGame from './components/UnityGame.vue'
+import Bar from "./components/Bar";
 
 export default {
   name: 'app',
   components: {
+      Bar,
     UnityGame
   }
 }
