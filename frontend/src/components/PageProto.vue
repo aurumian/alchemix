@@ -1,7 +1,15 @@
 <template>
     <div>
         <PersonalBar></PersonalBar>
-        <side-menu></side-menu>
+        <div id="pagepgrid">
+            <div id="sidemenu">
+
+                <side-menu></side-menu>
+            </div>
+            <div id="extra">
+                <router-view></router-view>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -15,5 +23,9 @@
 </script>
 
 <style scoped>
-
+    #pagepgrid{
+        display: grid;
+        grid-template-areas:
+            'sidemenu extra extra';
+    }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <welcome-page></welcome-page>
-    <page-proto></page-proto>
+    <router-view></router-view>
   </div>
 </template>
 

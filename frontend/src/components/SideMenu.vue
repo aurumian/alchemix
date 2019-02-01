@@ -1,15 +1,50 @@
 <template>
     <div>
-
+        <div id="menu">
+            <router-button to="/" text="MyClan"></router-button>
+            <router-button to="/" text="MyInventory"></router-button>
+            <router-button to="/craft" text="Craft"></router-button>
+            <router-button to="/" text="Market"></router-button>
+            <router-button to="/login" text="LogOut"></router-button>
+        </div>
     </div>
 </template>
 
 <script>
+    import RouterButton from './RouterButton'
     export default {
-        name: "SideMenu"
+        name: "SideMenu",
+        components: {RouterButton},
+        comments: {
+            RouterButton
+        }
     }
 </script>
 
 <style scoped>
-
+    #menu{
+        text-decoration:none;
+        background: #ffdede;
+        width: 150px;
+        font-size: 18px;
+        margin-left: 16%;
+    }
+    #menu a{
+        text-decoration: none;
+        text-decoration-color: #7b0009;
+    }
+    button{
+        background-color: rgba(255, 1, 0, 0.4);
+        border-radius: 5px;
+        border-style: none;
+        font-family: fantasy;
+        font-size: 22px;
+        color: #7b0009;
+        margin: 15px;
+        width: 120px;
+        height: 35px;
+    }
+    button:hover{
+        background-color: red;
+    }
 </style>

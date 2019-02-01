@@ -11,6 +11,7 @@
                 <signup></signup>
             </div>
         </div>
+        <router-link to="/">To protoPage</router-link>
     </div>
 </template>
 
@@ -40,12 +41,13 @@
     }
 
     .img{
-        float: left;
-        margin-left: 15%;
+
+        margin-left: 30%;
     }
     .login{
-        float: right;
-        margin-right: 25%;
+
+        margin-right: 20%;
+        margin-left: 0;
         margin-top: 20px;
     }
 
