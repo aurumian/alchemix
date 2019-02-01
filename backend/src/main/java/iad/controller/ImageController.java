@@ -35,7 +35,6 @@ public class ImageController {
     public ResponseEntity<byte[]> getImage(@PathVariable long id){
         Optional<Image> imageOptional = imageRepository.findById(id);
 
-
         ResponseEntity<byte[]> responseEntity;
         if (imageOptional.isPresent()){
             responseEntity = new ResponseEntity<>(imageOptional.get().getData(), HttpStatus.OK);
