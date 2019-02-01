@@ -1,4 +1,4 @@
-package iad.springback;
+package iad;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

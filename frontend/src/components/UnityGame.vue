@@ -10,7 +10,6 @@
           </div>
       </div>
 
-      <!--<unity src="Build/webgl.json" unity-loader="Build/UnityLoader.js" height="600" width="900"></unity>-->
   </div>
 </template>
 
@@ -18,7 +17,7 @@
 <script>
 
     export default {
-      name: 'HelloWorld',
+      name: 'UnityGame',
       props: {
         msg: String,
       },
