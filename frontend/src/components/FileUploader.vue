@@ -31,14 +31,14 @@
                 formData.append('file', this.file);
 
                 //Make POST request
-                axios.post('/image',
+                axios.post('/api/image/upload',
                     formData,
                     {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         },
                         onUploadProgress: (progressEvent) => {
-                            this.uploadPercentage = parseInteger(Math.round((progressEvent.loaded * 100)/ progressEvent.total));
+                            this.uploadPercentage = parseInt(Math.round((progressEvent.loaded * 100)/ progressEvent.total));
                         }
                     }
                 ).then(() =>{
