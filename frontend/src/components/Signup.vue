@@ -4,17 +4,35 @@
         <div id="welcome">
             First time on AlcheMix?
         </div>
-        <input class="input_field" type="text" placeholder=" login">
+        <input class="input_field" type="text" ref="username" placeholder=" login">
         <br/>
-        <input class="input_field" type="password" placeholder=" password">
+        <input class="input_field" type="password" ref="password"  placeholder=" password">
         <br/>
-        <input type="submit" value="sign up">
+        <input type="button" value="sign up" v-on:click="attemptSignup">
     </div>
 </template>
 
 <script>
+    import axios from 'axios';
+    import Login from './Login'
+
     export default {
-        name: "Signup"
+        name: "Signup",
+        methods:{
+            attemptSignup(){
+                let formData = new FormData();
+
+                formData.append("username",this.$refs.username.value);
+                formData.append("password",this.$refs.password.value);
+
+                axios.post("/signup",
+                    formData
+                ).then((resp) =>{
+                    alert(resp.data);
+                    Login.methods.attemptLogin()
+                });
+            }
+        }
     }
 </script>
 

@@ -1,16 +1,55 @@
 <template>
     <div>
-        <input class="input_field" type="text" placeholder=" login">
+        <input class="input_field" type="text" ref="username" placeholder=" login">
         <br/>
-        <input class="input_field" type="password" placeholder=" password">
+        <input class="input_field" type="password" ref="password" placeholder=" password">
         <br/>
-        <input type="submit" value="log in">
+        <input type="button" value="log in" v-on:click="buttonClick">
     </div>
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
-        name: "Login"
+        name: "Login",
+        methods:{
+            buttonClick(){
+                let formData = new FormData();
+
+                formData.append("username",this.$refs.username.value);
+                formData.append("password",this.$refs.password.value);
+
+                this.attemptLogin(formData);
+            },
+            attemptLogin(formData){
+
+
+                axios.post("/auth",
+                            formData,
+                )
+                    .then((resp) => {
+                        alert(resp.status);
+                        alert (resp.data);
+                        if (resp.status === 200) {
+                            window.localStorage.setItem("token", resp.data);
+                            this.$router.push("/");
+                        }
+                    })
+                    .catch((error) => {
+                       //handle error
+                        alert(error);
+                        if (error.response) {
+                            alert("wrong credentials");
+                        }
+                    })
+                ;
+
+            },
+            mounted(){
+                if (window.localStorage.getItem("token"))
+                    this.$router.push("/login");
+            }
+        }
     }
 </script>
 
