@@ -14,10 +14,12 @@ public class AjaxAwareAuthenticationEntryPoint implements AuthenticationEntryPoi
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        System.out.println("Handling exception");
-        //if("xhr".equals(request.getHeader("x-requested-with")))
+
+        if("xhr".equals(request.getHeader("x-requested-with")))
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized access");
-        //else
-        //    response.sendRedirect("/login");
+        else {
+            System.out.println("Redirecting");
+            response.sendRedirect("/login");
+        }
     }
 }
