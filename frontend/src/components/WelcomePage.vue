@@ -1,7 +1,10 @@
 <template>
     <div class="wpMain">
-        <bar></bar>
-        <div class="field" align="center">
+
+        <div class="field">
+            <div class="myBar">
+                <bar></bar>
+            </div>
             <div class="img">
                 <img src="../assets/Viles.png">
             </div>
@@ -27,13 +30,23 @@
 
 <style scoped>
     .wpMain{
-
+        background-image: linear-gradient(#ffe8ed, #ffcccc);
+    }
+    .myBar{
+        grid-area: header;
+    }
+    .img{
+        grid-area: sidebar;
+    }
+    .login{
+        grid-area: main;
     }
     .field{
         display: grid;
+        grid-template-columns: auto 500px 500px auto;
         grid-template-areas:
-            'img login'
-            'img login';
+            'header header header header'
+            '. sidebar main .';
         width: 100%;
         height: 700px;
         background-image: linear-gradient(#ffe8ed, #ffcccc);

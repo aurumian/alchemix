@@ -1,7 +1,10 @@
 <template>
     <div>
-        <PersonalBar></PersonalBar>
+
         <div id="pagepgrid">
+            <div id="PBar">
+                <PersonalBar></PersonalBar>
+            </div>
             <div id="sidemenu">
 
                 <side-menu></side-menu>
@@ -23,9 +26,20 @@
 </script>
 
 <style scoped>
+    #PBar{
+        grid-area: header;
+    }
+    #sidemenu{
+        grid-area: sidebar;
+    }
+    #extra{
+        grid-area: main;
+    }
     #pagepgrid{
         display: grid;
+        grid-auto-columns: 200px 220px 800px auto;
         grid-template-areas:
-            'sidemenu extra extra';
+            'header header header header'
+            '. sidebar main .';
     }
 </style>
