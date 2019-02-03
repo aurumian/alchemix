@@ -16,7 +16,7 @@
         data(){
             return {
                 file: '',
-                uploadPercentage: 60
+                uploadPercentage: 0
             }
         },
         methods:{
