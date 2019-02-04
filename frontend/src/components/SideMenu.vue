@@ -2,7 +2,7 @@
     <div>
         <div id="menu">
             <router-button to="/" text="MyClan"></router-button>
-            <router-button to="/" text="MyInventory"></router-button>
+            <router-button to="/inventory" text="MyInventory"></router-button>
             <router-button to="/craft" text="Craft"></router-button>
             <router-button to="/" text="Market"></router-button>
             <router-button to="/login" text="LogOut"></router-button>
@@ -22,7 +22,7 @@
     #menu{
         text-decoration:none;
         background: #ffdede;
-        width: 150px;
+        width: 170px;
         font-size: 18px;
         margin-left: 16%;
     }
@@ -38,7 +38,7 @@
         font-size: 22px;
         color: #7b0009;
         margin: 15px;
-        width: 120px;
+        width: 140px;
         height: 35px;
     }
     button:hover{
