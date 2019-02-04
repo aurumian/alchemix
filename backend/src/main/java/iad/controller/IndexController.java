@@ -20,4 +20,12 @@ public class IndexController {
     public String getIndex3(){
         return "index.html";
     }
+
+    @GetMapping("/admin/**")
+    public String getIndex4(){
+        return "forward:/";
+    }
+
+
+
 }

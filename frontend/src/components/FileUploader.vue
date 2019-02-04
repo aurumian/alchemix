@@ -1,10 +1,12 @@
 <template>
-    <div>
-        File: <input type="file" id="file" ref="file" v-on:change="handleFileUpload">
+    <div id="fileUp" align="center">
+        File: <input type="file" id="file" ref="file" v-on:change="handleFileUpload" align="center">
         <br>
-        <progress max="100" :value.prop="uploadPercentage"></progress>
         <br>
-        <button v-on:click="submitFile ">Submit</button>
+        <progress max="100" :value.prop="uploadPercentage" ></progress>
+        <br>
+        <br>
+        <button v-on:click="submitFile">Upload</button>
     </div>
 </template>
 
@@ -13,6 +15,9 @@
 
     export default {
         name: "FileUploader",
+        props:[
+            'uploadUrl'
+        ],
         data(){
             return {
                 file: '',
@@ -30,8 +35,14 @@
                 //Add file to form data
                 formData.append('file', this.file);
 
+                //check file's format
+
+
+                if (this.uploadUrl === '')
+                    this.uploadUrl = '/api/image/upload';
+
                 //Make POST request
-                axios.post('/api/image/upload',
+                axios.post(this.uploadUrl,
                     formData,
                     {
                         headers: {
@@ -45,10 +56,10 @@
                     //Some handling code
                     console.log('Success');
                 })
-                    .catch(()=>{
-                        //Some handling code
-                        console.log('Failed to upload file')
-                    })
+                .catch(()=>{
+                    //Some handling code
+                    console.log('Failed to upload file')
+                })
             }
         }
     }
@@ -82,5 +93,18 @@
 
         border-radius: 2px;
         background-size: 35px 20px, 100% 100%, 100%, 100%;
+    }
+
+    input {
+        border-radius: 3px;
+    }
+
+    #fileUp {
+        border: #0074D9 solid;
+        border-radius: 10px;
+        background-color: #93cdff;
+        padding: 20px;
+        margin: 10px;
+
     }
 </style>

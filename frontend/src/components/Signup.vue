@@ -14,7 +14,6 @@
 
 <script>
     import axios from 'axios';
-    import Login from './Login'
 
     export default {
         name: "Signup",
@@ -28,8 +27,13 @@
                 axios.post("/signup",
                     formData
                 ).then((resp) =>{
-                    alert(resp.data);
-                    Login.methods.attemptLogin()
+                    if (resp.status === 200)
+                        axios.post("/auth", formData).then((resp)=>{
+                                if (resp.status === 200)
+                                    window.localStorage.setItem("token", resp.data);
+                                    this.$router.push("/");
+                            }
+                        )
                 });
             }
         }

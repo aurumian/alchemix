@@ -9,18 +9,20 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Optional;
+import java.io.Serializable;
+import java.util.*;
 
 @RestController
-public class ImageController {
+@RequestMapping("/api")
+public class ApiController {
 
     private ImageRepository imageRepository;
 
-    public ImageController(ImageRepository imageRepository){
+    public ApiController(ImageRepository imageRepository){
         this.imageRepository = imageRepository;
     }
 
-    @PostMapping("api/image/upload")
+    @PostMapping("/image/upload")
     public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file){
         try {
             Image image = new Image(file.getBytes());
@@ -31,7 +33,7 @@ public class ImageController {
         }
     }
 
-    @GetMapping("api/image/{id}")
+    @GetMapping("/image/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable long id){
         Optional<Image> imageOptional = imageRepository.findById(id);
 
@@ -43,5 +45,21 @@ public class ImageController {
             responseEntity = ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 
         return responseEntity;
+    }
+
+
+    @GetMapping("/images")
+    public ResponseEntity<List<ImageRow>> getImages(){
+        Long[] ids = imageRepository.getImageIds();
+
+        if (ids != null){
+            List<ImageRow> rows = new ArrayList<>(ids.length);
+            for (Long id: ids)
+                rows.add(new ImageRow(id));
+
+            return ResponseEntity.ok(rows);
+        }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
 }

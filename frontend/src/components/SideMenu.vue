@@ -14,10 +14,7 @@
     import RouterButton from './RouterButton'
     export default {
         name: "SideMenu",
-        components: {RouterButton},
-        comments: {
-            RouterButton
-        }
+        components: {RouterButton}
     }
 </script>
 

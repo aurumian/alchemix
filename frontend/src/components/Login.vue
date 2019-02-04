@@ -9,27 +9,25 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import axios from 'axios'
+
     export default {
         name: "Login",
         methods:{
             buttonClick(){
                 let formData = new FormData();
-
                 formData.append("username",this.$refs.username.value);
                 formData.append("password",this.$refs.password.value);
 
                 this.attemptLogin(formData);
+
             },
             attemptLogin(formData){
-
 
                 axios.post("/auth",
                             formData,
                 )
                     .then((resp) => {
-                        alert(resp.status);
-                        alert (resp.data);
                         if (resp.status === 200) {
                             window.localStorage.setItem("token", resp.data);
                             this.$router.push("/");
@@ -37,17 +35,14 @@
                     })
                     .catch((error) => {
                        //handle error
-                        alert(error);
+                        console.log(error);
                         if (error.response) {
                             alert("wrong credentials");
                         }
                     })
                 ;
 
-            },
-            mounted(){
-                if (window.localStorage.getItem("token"))
-                    this.$router.push("/login");
+
             }
         }
     }
