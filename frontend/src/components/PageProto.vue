@@ -13,12 +13,6 @@
                 <router-view></router-view>
             </div>
         </div>
-        <img class="ConePotion" src="../assets/OrangeConePotionSmall.png">
-        <img class="ConePotion" src="../assets/PinkConePotionSmall.png">
-        <img class="ConePotion" src="../assets/IndigoConePotionSmall.png">
-        <img class="ConePotion" src="../assets/GreenConePotionSmall.png">
-        <img class="ConePotion" src="../assets/BlueConePotionSmall.png">
-        <img class="ConePotion" src="../assets/RedConePotionSmall.png">
 
     </div>
 </template>
