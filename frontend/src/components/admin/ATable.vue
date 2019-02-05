@@ -9,7 +9,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="entry in filteredData">
+                <tr v-for="entry in filteredData" :key="entry[(!columns ? Object.keys(data[0]): columns)[0]]">
                     <td v-for="key in (!columns ? Object.keys(data[0]): columns)" v-html="entry[key]">
 
                     </td>
@@ -52,8 +52,13 @@
 <style scoped>
 
     #table{
-        max-height: 600px;
+        max-height: 685px;
         overflow: scroll;
+    }
+
+    #table >>> img{
+        max-height: 120px;
+        border-radius: 10px;
     }
 
     #table::-webkit-scrollbar{
@@ -84,5 +89,6 @@
     th, td {
         min-width: 100px;
         padding: 10px 20px;
+        border-radius: 5px;
     }
 </style>

@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/signup")
+    @PostMapping("/api/signup")
     public ResponseEntity<User> saveUser(@RequestParam String username, @RequestParam String password){
         User user = new User();
         user.setUsername(username);

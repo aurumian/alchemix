@@ -11,6 +11,7 @@
     import ATable from "./ATable";
     import axios from 'axios';
 
+
     export default {
         name: "UrlTable",
         props:{
@@ -37,7 +38,7 @@
 
             }
         },
-        created(){
+        mounted(){
             this.downloadTable();
         }
     }

@@ -40,6 +40,7 @@
     }
     #pagegrid{
         display: grid;
+        grid-row-gap: 20px;
         grid-auto-columns: 200px 300px 800px auto;
         grid-template-areas:
                 'header header header header'

@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 public class ImageRow implements Serializable {
     private Long imageId;
+    private String name;
     private String image;
 
-    public ImageRow(Long imageId){
+    public ImageRow(Long imageId, String name){
         this.imageId = imageId;
-        this.image = "<img src='/api/image/" + imageId + "' height='80px'>";
+        this.name = name;
+        this.image = "<img src='/api/image/" + imageId + "'>";
     }
 
     public Long getImageId() {
@@ -25,5 +27,13 @@ public class ImageRow implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

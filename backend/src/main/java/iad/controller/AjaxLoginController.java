@@ -32,7 +32,7 @@ public class AjaxLoginController {
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
-    @PostMapping("/auth")
+    @PostMapping("/api/auth")
     public ResponseEntity<String> performLogin(
             @RequestParam("username") String username,
             @RequestParam("password") String password,

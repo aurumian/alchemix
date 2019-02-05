@@ -1,9 +1,10 @@
 package iad.dto;
 
 public class ResourceDto {
-    public long resourceId;
 
     public String name;
+
+    public String description;
 
     public long tier;
 

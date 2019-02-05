@@ -11,16 +11,16 @@ import java.io.IOException;
 import java.util.*;
 
 @RestController
-@RequestMapping("/api")
-public class ApiController {
+@RequestMapping("/api/image")
+public class ImageController {
 
     private ImageRepository imageRepository;
 
-    public ApiController(ImageRepository imageRepository){
+    public ImageController(ImageRepository imageRepository){
         this.imageRepository = imageRepository;
     }
 
-    @PostMapping("/image/upload")
+    @PostMapping("/upload")
     public ResponseEntity<String> saveImage(@RequestParam("file") MultipartFile file){
         try {
             Image image = new Image(file.getBytes(), file.getOriginalFilename());
@@ -31,7 +31,7 @@ public class ApiController {
         }
     }
 
-    @GetMapping("/image/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable long id){
         Optional<Image> imageOptional = imageRepository.findById(id);
 
@@ -46,7 +46,7 @@ public class ApiController {
     }
 
 
-    @GetMapping("/images")
+    @GetMapping
     public ResponseEntity<List<ImageRow>> getImages(){
         List<ImageRow> rows = imageRepository.getImageRows();
 

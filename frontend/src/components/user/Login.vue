@@ -10,9 +10,7 @@
 
 <script>
     import axios from 'axios'
-    //import AuthService from '../services/AuthService'
-    import stuff from '../assets/myClass'
-    import router from '../router/'
+    import AuthService from '../../services/AuthService'
 
     export default {
         name: "Login",

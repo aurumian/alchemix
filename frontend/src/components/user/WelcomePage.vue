@@ -6,7 +6,7 @@
                 <bar></bar>
             </div>
             <div class="img">
-                <img src="../assets/Viles.png">
+                <img src="../../assets/Viles.png">
             </div>
             <div class="login">
                 <login></login>
@@ -19,9 +19,9 @@
 </template>
 
 <script>
-    import Login from "./user/Login";
+    import Login from "./Login";
     import Signup from "./Signup";
-    import Bar from "./Bar";
+    import Bar from "../Bar";
     export default {
         name: "WelcomePage",
         components: {Bar, Signup, Login}

@@ -1,5 +1,7 @@
 package iad.model;
 
+import iad.dto.ResourceDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,14 +15,27 @@ public class Resource {
 
     private String name;
 
+    private String description;
+
     private long tier;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IMAGE_ID")
-    private Image image;
+    @Column(name = "IMAGE_ID")
+    private long imageId;
 
     @Column(name = "ASSET_BUNDLE_ID")
     private long assetBundleId;
+
+    public Resource(){
+
+    }
+
+    public Resource(ResourceDto resourceDto){
+        this.name = resourceDto.name;
+        this.tier = resourceDto.tier;
+        this.imageId = resourceDto.imageId;
+        this.assetBundleId = resourceDto.assetBundleId;
+        this.description = resourceDto.description;
+    }
 
     public long getResourceId() {
         return resourceId;
@@ -53,5 +68,21 @@ public class Resource {
 
     public void setAssetBundleId(long assetBundleId) {
         this.assetBundleId = assetBundleId;
+    }
+
+    public long getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(long imageId) {
+        this.imageId = imageId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

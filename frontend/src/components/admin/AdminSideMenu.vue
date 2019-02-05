@@ -3,9 +3,9 @@
         <div id="menu">
             <router-button to="/admin/image" text="Image"></router-button>
             <router-button to="/admin" text="Asset Bundle"></router-button>
-            <router-button to="/admin" text="Resource"></router-button>
-            <router-button to="/admin" text="Recipe"></router-button>
-            <router-button to="/admin" text="Supplier"></router-button>
+            <router-button to="/admin/resource" text="Resource"></router-button>
+            <router-button to="/admin/recipe" text="Recipe"></router-button>
+            <router-button to="/admin/supplier" text="Supplier"></router-button>
         </div>
     </div>
 </template>
