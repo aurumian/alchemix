@@ -2,6 +2,7 @@
     <div align="center">
         <file-uploader upload-url="/api/image/upload"></file-uploader>
         <url-table url="/api/image"></url-table>
+
     </div>
 </template>
 
