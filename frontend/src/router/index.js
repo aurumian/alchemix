@@ -1,11 +1,12 @@
 import Router from 'vue-router'
 import Vue from 'vue'
-import WelcomePage from '../components/WelcomePage'
+import WelcomePage from '../components/user/WelcomePage'
 import PageProto from '../components/PageProto'
 import UnityGame from '../components/UnityGame'
-import AdminPage from '../components/Admin/AdminPage'
-import ImageComp from '../components/Admin/ImageComp'
+import AdminPage from '../components/admin/AdminPage'
+import ImageComp from '../components/admin/ImageComp'
 import Inventory from '../components/Inventory'
+import ResourcePage from '../components/admin/ResourcePage'
 Vue.use(Router);
 
 export default new Router({
@@ -36,6 +37,10 @@ export default new Router({
                 {
                     path: '/admin/image',
                     component: ImageComp
+                },
+                {
+                    path: '/admin/resource',
+                    component: ResourcePage
                 }
             ]
         }

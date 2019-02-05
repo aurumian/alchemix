@@ -55,6 +55,13 @@ function onReadyStateChangeReplacement(){
 window.XMLHttpRequest.prototype.open = openReplacement;
 window.XMLHttpRequest.prototype.send = sendReplacement;
 
+router.afterEach((to, from) =>{
+    if (to.path.indexOf("/admin") > -1)
+        document.getElementsByTagName("html")[0].className = "blue";
+    else
+        document.getElementsByTagName("html")[0].className = "pink";
+});
+
 new Vue({
   render: h => h(App),
   router

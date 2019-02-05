@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import Login from "./Login";
+    import Login from "./user/Login";
     import Signup from "./Signup";
     import Bar from "./Bar";
     export default {

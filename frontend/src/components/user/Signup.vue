@@ -24,11 +24,11 @@
                 formData.append("username",this.$refs.username.value);
                 formData.append("password",this.$refs.password.value);
 
-                axios.post("/signup",
+                axios.post("/api/signup",
                     formData
                 ).then((resp) =>{
                     if (resp.status === 200)
-                        axios.post("/auth", formData).then((resp)=>{
+                        axios.post("/api/auth", formData).then((resp)=>{
                                 if (resp.status === 200)
                                     window.localStorage.setItem("token", resp.data);
                                     this.$router.push("/");

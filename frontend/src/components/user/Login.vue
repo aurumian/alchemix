@@ -10,6 +10,9 @@
 
 <script>
     import axios from 'axios'
+    //import AuthService from '../services/AuthService'
+    import stuff from '../assets/myClass'
+    import router from '../router/'
 
     export default {
         name: "Login",
@@ -24,7 +27,7 @@
             },
             attemptLogin(formData){
 
-                axios.post("/auth",
+                axios.post("/api/auth",
                             formData,
                 )
                     .then((resp) => {

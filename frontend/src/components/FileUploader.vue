@@ -100,11 +100,8 @@
     }
 
     #fileUp {
-        border: #0074D9 solid;
-        border-radius: 10px;
-        background-color: #93cdff;
+        background-color: #c5caff;
         padding: 20px;
-        margin: 10px;
 
     }
 </style>
