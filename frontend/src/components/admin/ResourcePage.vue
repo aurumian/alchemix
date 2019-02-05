@@ -3,7 +3,6 @@
         <add-resource></add-resource>
         <url-table url="/api/resource"></url-table>
     </div>
-
 </template>
 
 <script>

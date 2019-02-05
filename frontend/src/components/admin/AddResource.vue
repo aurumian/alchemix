@@ -11,7 +11,6 @@
         AssetBundleId<input type="text" ref="abId">
         <br><br>
         <button v-on:click="addResource">Add</button>
-
     </div>
 </template>
 
