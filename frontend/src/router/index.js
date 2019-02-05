@@ -3,10 +3,10 @@ import Vue from 'vue'
 import WelcomePage from '../components/user/WelcomePage'
 import PageProto from '../components/PageProto'
 import UnityGame from '../components/UnityGame'
-import AdminPage from '../components/folder/AdminPage'
-import ImageComp from '../components/folder/ImageComp'
+import AdminPage from '../components/admin/AdminPage'
+import ImageComp from '../components/admin/ImageComp'
 import Inventory from '../components/Inventory'
-import ResourcePage from '../components/folder/ResourcePage'
+import ResourcePage from '../components/admin/ResourcePage'
 
 Vue.use(Router);
 
