@@ -1,6 +1,7 @@
 package iad.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,7 +19,7 @@ public class Clan {
     @JoinColumn(name = "leader_id", referencedColumnName = "user_id")
     private User leader;
 
-    @OneToMany(mappedBy = "clan")
+    @OneToMany(mappedBy = "clan", cascade = CascadeType.ALL)
     private Set<User> clansmen;
 
     @Column(name = "image_id")
@@ -26,6 +27,18 @@ public class Clan {
 
     @OneToMany(mappedBy = "clan")
     private Set<ClanPost> posts;
+
+    public Clan(){
+
+    }
+
+    public Clan(String name, User leader, long imageId){
+        this.name = name;
+        this.leader = leader;
+        this.imageId = imageId;
+        this.clansmen = new HashSet<>();
+        clansmen.add(leader);
+    }
 
     public long getClanId() {
         return clanId;

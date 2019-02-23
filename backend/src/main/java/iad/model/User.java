@@ -26,7 +26,7 @@ public class User {
     @Column(name = "last_time_online")
     private Date lastTimeOnline;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private Role role;
 

@@ -11,4 +11,6 @@ public interface ImageRepository extends CrudRepository<Image, Long> {
 
     @Query("select new iad.controller.ImageRow(img.imageId, img.name) from Image img")
     List<ImageRow> getImageRows();
+
+    Image getByImageId(long imageId);
 }
