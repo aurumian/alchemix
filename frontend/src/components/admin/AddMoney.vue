@@ -23,6 +23,7 @@
                 ).then((resp) => {
                         if (resp.status === 200) {
                             this.user.money = resp.data;
+                            this.$refs.money.value = '';
                         }
                     }
                 ).catch(err => {
