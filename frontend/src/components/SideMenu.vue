@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="menu">
-            <router-button to="/" text="MyClan"></router-button>
+            <router-button to="/clan" text="MyClan"></router-button>
             <router-button to="/inventory" text="MyInventory"></router-button>
             <router-button to="/craft" text="Craft"></router-button>
             <router-button to="/" text="Market"></router-button>
