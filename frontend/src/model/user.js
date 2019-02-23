@@ -1,11 +1,11 @@
 export default class {
-    name;
+    username;
     imageId;
     money;
     role;
 
-    constructor(name, imageId, money, role){
-        this.name = name;
+    constructor(username, imageId, money, role){
+        this.username = username;
         this.money = money;
         this.role = role;
         this.imageId = imageId;

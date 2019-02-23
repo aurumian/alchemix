@@ -1,10 +1,10 @@
 <template>
     <div id="userBar">
         <div id="inimg">
-            <img src="../../assets/Viles.png">
+            <img :src="'/api/image/' + myUser.imageId">
         </div>
         <div id="iname">
-            {{myUser.name}}
+            {{myUser.username}}
         </div>
         <div id="money">
             {{myUser.money}}

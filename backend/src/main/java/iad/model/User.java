@@ -36,14 +36,11 @@ public class User {
 
     }
 
-    public User(String username, String password){
-        this(username,password, "ROLE_USER");
-    }
-
-    public User(String username, String password, String role){
+    public User(String username, String password, Role role){
         this.username = username;
         this.password = password;
-        this.role = new Role(role);
+        this.role = role;
+        this.imageId = 3;
         this.lastTimeOnline = new Date();
         this.money = 100;
         this.clanId = null;

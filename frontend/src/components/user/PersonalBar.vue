@@ -12,8 +12,10 @@
 </template>
 
 <script>
-    import UserInfo from "./UserInfo";
-    import user from "../../model/user.js";
+    import UserInfo from "./UserInfo"
+    import user from "../../model/user.js"
+    import axios from "axios"
+
     export default {
         name: "PersonalBar",
         components: {UserInfo},
@@ -21,6 +23,18 @@
             return {
                 myUser: new user("name", 2, 200, "ROLE_USER")
             }
+        },
+        methods:{
+            getUser(){
+                axios.get("/api/user/info").then(resp => {
+                    if (resp.status === 200){
+                        this.myUser = resp.data;
+                    }
+                })
+            }
+        },
+        mounted(){
+            this.getUser();
         }
     }
 </script>
