@@ -12,24 +12,24 @@
     import axios from 'axios'
     export default {
         name: "AddMoney",
-        methods:{
-            getMoney(){
+        methods: {
+            getMoney() {
                 let formData = new FormData();
 
-                formData.append("money",this.$refs.money.value);
+                formData.append("money", this.$refs.money.value);
 
                 axios.post("/admin/api/hesoyam",
                     formData
-                ).then((resp) =>{
-                        if (resp.status === 200){
+                ).then((resp) => {
+                        if (resp.status === 200) {
 
                         }
                     }
-
-                ).catch(err =>{
+                ).catch(err => {
 
                 });
             }
+        }
     }
 </script>
 
