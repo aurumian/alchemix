@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import PersonalBar from "./PersonalBar";
+    import PersonalBar from "./user/PersonalBar";
     import SideMenu from "./SideMenu";
     import Inventory from "./Inventory";
     export default {
