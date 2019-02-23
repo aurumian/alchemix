@@ -13,12 +13,12 @@ public class IndexController {
 
     @GetMapping("/craft")
     public String getIndex2(){
-        return "index.html";
+        return "forward:/";
     }
 
     @GetMapping("/clan")
     public String getIndex3(){
-        return "index.html";
+        return "forward:/";
     }
 
     @GetMapping("/admin/**")

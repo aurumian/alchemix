@@ -55,7 +55,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.json",
                         "/index.html")
                 .permitAll()
-                .antMatchers("/signup", "/api/auth", "/api/login", "/craft", "/admin/**", "/api/image/*", "/api/resource/*")
+                .antMatchers("/signup", "/api/auth", "/api/login", "/craft", "/admin/**", "/api/image/*", "/api/resource/*", "/login")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
