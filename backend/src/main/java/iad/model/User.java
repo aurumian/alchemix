@@ -30,9 +30,6 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @Column(name = "clan_id")
-    private Long clanId;
-
     @ManyToMany
     @JoinTable(
             name = "recipe_inventory",
@@ -46,6 +43,10 @@ public class User {
     @OneToMany(mappedBy = "seller")
     private Set<ResourceOnSale> resourcesOnSale;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "clan_id")
+    private Clan clan;
+
     public User(){
 
     }
@@ -57,7 +58,6 @@ public class User {
         this.imageId = 3;
         this.lastTimeOnline = new Date();
         this.money = 100;
-        this.clanId = null;
     }
 
     public long getUserId() {
@@ -116,14 +116,6 @@ public class User {
         this.role = role;
     }
 
-    public long getClanId() {
-        return clanId;
-    }
-
-    public void setClanId(long clanId) {
-        this.clanId = clanId;
-    }
-
     public Set<Recipe> getRecipes() {
         return recipes;
     }
@@ -146,5 +138,13 @@ public class User {
 
     public void setResourcesOnSale(Set<ResourceOnSale> resourcesOnSale) {
         this.resourcesOnSale = resourcesOnSale;
+    }
+
+    public Clan getClan() {
+        return clan;
+    }
+
+    public void setClan(Clan clan) {
+        this.clan = clan;
     }
 }

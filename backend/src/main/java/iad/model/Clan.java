@@ -14,8 +14,12 @@ public class Clan {
 
     private String name;
 
-    @Column(name = "leader_id")
-    private long leaderId;
+    @OneToOne
+    @JoinColumn(name = "leader_id", referencedColumnName = "user_id")
+    private User leader;
+
+    @OneToMany(mappedBy = "clan")
+    private Set<User> clansmen;
 
     @Column(name = "image_id")
     private long imageId;
@@ -39,14 +43,6 @@ public class Clan {
         this.name = name;
     }
 
-    public long getLeaderId() {
-        return leaderId;
-    }
-
-    public void setLeaderId(long leaderId) {
-        this.leaderId = leaderId;
-    }
-
     public long getImageId() {
         return imageId;
     }
@@ -61,5 +57,21 @@ public class Clan {
 
     public void setPosts(Set<ClanPost> posts) {
         this.posts = posts;
+    }
+
+    public User getLeader() {
+        return leader;
+    }
+
+    public void setLeader(User leader) {
+        this.leader = leader;
+    }
+
+    public Set<User> getClansmen() {
+        return clansmen;
+    }
+
+    public void setClansmen(Set<User> clansmen) {
+        this.clansmen = clansmen;
     }
 }
