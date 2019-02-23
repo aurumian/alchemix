@@ -5,7 +5,7 @@
             <router-button to="/admin" text="Asset Bundle"></router-button>
             <router-button to="/admin/resource" text="Resource"></router-button>
             <router-button to="/admin/recipe" text="Recipe"></router-button>
-            <router-button to="/admin/supplier" text="Supplier"></router-button>
+            <router-button to="/admin/admins" text="Admin"></router-button>
         </div>
     </div>
 </template>
