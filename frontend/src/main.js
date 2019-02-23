@@ -31,8 +31,6 @@ function sendReplacement(data){
   }
 
   this.setRequestHeader("x-requested-with", "xhr");
-  if (window.localStorage.getItem("token"))
-      this.setRequestHeader("Authorization", "Bearer " + window.localStorage.getItem("token"));
 
   this.onreadystatechange = onReadyStateChangeReplacement;
   return send.apply(this, arguments);
