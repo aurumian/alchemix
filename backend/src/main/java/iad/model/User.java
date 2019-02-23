@@ -2,6 +2,7 @@ package iad.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
@@ -31,6 +32,19 @@ public class User {
 
     @Column(name = "clan_id")
     private Long clanId;
+
+    @ManyToMany
+    @JoinTable(
+            name = "recipe_inventory",
+            joinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<Recipe> recipes;
+
+    @OneToMany(mappedBy = "user")
+    private Set<ResourceInventory> resourceInventory;
+
+    @OneToMany(mappedBy = "seller")
+    private Set<ResourceOnSale> resourcesOnSale;
 
     public User(){
 
@@ -108,5 +122,29 @@ public class User {
 
     public void setClanId(long clanId) {
         this.clanId = clanId;
+    }
+
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public Set<ResourceInventory> getResourceInventory() {
+        return resourceInventory;
+    }
+
+    public void setResourceInventory(Set<ResourceInventory> resourceInventory) {
+        this.resourceInventory = resourceInventory;
+    }
+
+    public Set<ResourceOnSale> getResourcesOnSale() {
+        return resourcesOnSale;
+    }
+
+    public void setResourcesOnSale(Set<ResourceOnSale> resourcesOnSale) {
+        this.resourcesOnSale = resourcesOnSale;
     }
 }

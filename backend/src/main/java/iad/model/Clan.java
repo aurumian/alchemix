@@ -1,6 +1,7 @@
 package iad.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Clan {
@@ -18,6 +19,9 @@ public class Clan {
 
     @Column(name = "image_id")
     private long imageId;
+
+    @OneToMany(mappedBy = "clan")
+    private Set<ClanPost> posts;
 
     public long getClanId() {
         return clanId;
@@ -49,5 +53,13 @@ public class Clan {
 
     public void setImageId(long imageId) {
         this.imageId = imageId;
+    }
+
+    public Set<ClanPost> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<ClanPost> posts) {
+        this.posts = posts;
     }
 }

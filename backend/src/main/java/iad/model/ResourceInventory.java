@@ -5,19 +5,19 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "RESOURCE_INVENTORY")
-public class ResourceInventory {
+public class ResourceInventory implements Serializable{
 
-    @EmbeddedId
-    private ResourceInventoryKey resourceInventoryKey;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "resource_id")
+    private Resource resource;
+
     private int quantity;
-
-    public ResourceInventoryKey getResourceInventoryKey() {
-        return resourceInventoryKey;
-    }
-
-    public void setResourceInventoryKey(ResourceInventoryKey resourceInventoryKey) {
-        this.resourceInventoryKey = resourceInventoryKey;
-    }
 
     public int getQuantity() {
         return quantity;
@@ -26,44 +26,31 @@ public class ResourceInventory {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-}
 
-@Embeddable
-class ResourceInventoryKey implements Serializable {
-    @Column(name = "USER_ID", nullable = false)
-    private long userId;
-    @Column(name = "RESOURCE_ID", nullable = false)
-    private long resourceId;
-
-    protected ResourceInventoryKey(){
-
+    public User getUser() {
+        return user;
     }
 
-    public ResourceInventoryKey(long userId, long resourceId){
-        this.userId = userId;
-        this.resourceId = resourceId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public long getUserId() {
-        return userId;
+    public Resource getResource() {
+        return resource;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public long getResourceId() {
-        return resourceId;
-    }
-
-    public void setResourceId(long resourceId) {
-        this.resourceId = resourceId;
+    public void setResource(Resource resource) {
+        this.resource = resource;
     }
 
     @Override
-    public boolean equals(Object o){
-        if (!(o instanceof ResourceInventoryKey)) return false;
-        ResourceInventoryKey other = (ResourceInventoryKey) o;
-        return this.userId == other.userId && this.resourceId == other.resourceId;
+    public boolean equals(Object obj) {
+        if (!(obj instanceof ResourceInventory)) return false;
+
+        ResourceInventory other = (ResourceInventory) obj;
+
+        return this.resource.getResourceId() == other.resource.getResourceId() &&
+                this.user.getUserId() == other.user.getUserId();
     }
 }
+

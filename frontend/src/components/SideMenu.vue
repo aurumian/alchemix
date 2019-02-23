@@ -5,16 +5,23 @@
             <router-button to="/inventory" text="MyInventory"></router-button>
             <router-button to="/craft" text="Craft"></router-button>
             <router-button to="/" text="Market"></router-button>
-            <router-button to="/login" text="LogOut"></router-button>
+            <button v-on:click="logout">Log Out</button>
         </div>
     </div>
 </template>
 
 <script>
     import RouterButton from './RouterButton'
+    import axios from 'axios'
     export default {
         name: "SideMenu",
-        components: {RouterButton}
+        components: {RouterButton},
+        methods:{
+            logout(){
+                axios.get("/api/logout");
+                this.$router.push("/login");
+            }
+        }
     }
 </script>
 
