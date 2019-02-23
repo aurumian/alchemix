@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import User from './model/user'
 
 Vue.config.productionTip = false;
 
@@ -62,6 +63,17 @@ router.afterEach((to, from) =>{
         document.getElementsByTagName("html")[0].className = "pink";
 });
 
+const Store = {
+    user: new User("name", 5, 100, "ROLE_USER")
+};
+
+Vue.mixin({
+    data(){
+        return {
+            user: Store.user
+        }
+    }
+});
 new Vue({
   render: h => h(App),
   router

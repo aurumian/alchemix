@@ -4,7 +4,7 @@
         <br/>
         <input class="input_field" type="text" ref="money" placeholder=" $$$">
         <br/>
-        <input type="button" value="HESOYAM" >
+        <input type="button" value="HESOYAM" v-on:click="addMoney">
     </div>
 </template>
 
@@ -13,7 +13,7 @@
     export default {
         name: "AddMoney",
         methods: {
-            getMoney() {
+            addMoney() {
                 let formData = new FormData();
 
                 formData.append("money", this.$refs.money.value);
@@ -22,7 +22,7 @@
                     formData
                 ).then((resp) => {
                         if (resp.status === 200) {
-
+                            this.user.money = resp.data;
                         }
                     }
                 ).catch(err => {

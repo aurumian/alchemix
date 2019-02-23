@@ -26,20 +26,22 @@ public class UserController {
     RoleRepository roleRepository;
 
     @PostMapping("/api/signup")
-    public ResponseEntity<User> saveUser(@RequestParam String username, @RequestParam String password){
+    public ResponseEntity<String> saveUser(@RequestParam String username, @RequestParam String password){
         User user = new User(username, passwordEncoder.encode(password), roleRepository.findByRole("ROLE_USER"));
-        return ResponseEntity.status(HttpStatus.OK).body(userRepository.save(user));
+        userRepository.save(user);
+        return ResponseEntity.ok("OK");
     }
 
     @PostMapping("/admin/api/addmin")
-    public ResponseEntity<User> saveAdmin(@RequestParam String username, @RequestParam String password){
+    public ResponseEntity<String> saveAdmin(@RequestParam String username, @RequestParam String password){
         User user = new User(username, passwordEncoder.encode(password), roleRepository.findByRole("ROLE_ADMIN"));
-        return ResponseEntity.status(HttpStatus.OK).body(userRepository.save(user));
+        userRepository.save(user);
+        return ResponseEntity.status(HttpStatus.OK).body("OK");
     }
 
     @PostMapping("/admin/api/hesoyam")
     public ResponseEntity<Long> addMoney(@RequestParam long money, Principal principal){
-        User user = userRepository.getOne(principal.getName());
+        User user = userRepository.getOneByUsername(principal.getName());
         money += user.getMoney();
         user.setMoney(money);
         userRepository.save(user);

@@ -1,26 +1,37 @@
 <template>
     <div id="userBar">
         <div id="inimg">
-            <img :src="'/api/image/' + myUser.imageId">
+            <img :src="'/api/image/' + user.imageId">
         </div>
         <div id="iname">
-            {{myUser.username}}
+            {{user.username}}
         </div>
         <div id="money">
-            {{myUser.money}}
+            {{user.money}}
         </div>
         <div id="role">
-            {{myUser.role}}
+            {{user.role}}
         </div>
     </div>
 </template>
 
 <script>
-    import user from "../../model/user.js"
+    import axios from 'axios'
     //image name money role
     export default {
         name: "UserInfo",
-        props: {myUser: user}
+        methods:{
+            getUser(){
+                axios.get("/api/user/info").then(resp => {
+                    if (resp.status === 200){
+                        Object.assign(this.user, resp.data);
+                    }
+                })
+            }
+        },
+        created(){
+            this.getUser();
+        }
     }
 </script>
 

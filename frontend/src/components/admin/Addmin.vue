@@ -4,7 +4,9 @@
         <br/>
         <input class="input_field" type="password" ref="password"  placeholder=" password">
         <br/>
-        <input type="button" value="Addmin" v-on:click="attemptSignup">
+        <input type="button" value="Addmin" v-on:click="attemptSave">
+        <br>
+        <span ref="mySpan"></span>
     </div>
 </template>
 
@@ -14,7 +16,7 @@
     export default {
         name: "Addmin",
         methods:{
-            attemptSignup(){
+            attemptSave(){
                 let formData = new FormData();
 
                 formData.append("username",this.$refs.username.value);
@@ -24,12 +26,12 @@
                     formData
                 ).then((resp) =>{
                     if (resp.status === 200){
-
+                        this.$refs.mySpan.innerText = "Created new admin";
                         }
                     }
 
                 ).catch(err =>{
-
+                    this.$refs.mySpan.innerText = "Failed to create new admin";
                 });
             }
         }

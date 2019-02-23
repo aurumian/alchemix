@@ -5,7 +5,7 @@
 
         </div>
         <div id="userBar">
-            <user-info :my-user="myUser"></user-info>
+            <user-info></user-info>
         </div>
 
     </div>
@@ -13,29 +13,10 @@
 
 <script>
     import UserInfo from "../user/UserInfo"
-    import user from "../../model/user.js"
-    import axios from "axios"
 
     export default {
         name: "AdminBar",
         components: {UserInfo},
-        data(){
-            return {
-                myUser: new user("name", 2, 200, "ROLE_USER")
-            }
-        },
-        methods:{
-            getUser(){
-                axios.get("/api/user/info").then(resp => {
-                    if (resp.status === 200){
-                        this.myUser = resp.data;
-                    }
-                })
-            }
-        },
-        mounted(){
-            this.getUser();
-        }
     }
 </script>
 
