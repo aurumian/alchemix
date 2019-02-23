@@ -18,13 +18,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     private CustomUserDetailsService userDetailsService;
 
-    public SpringSecurityConfig(CustomUserDetailsService userDetailsService, JwtAuthenticationFilter jwtAuthenticationFilter){
+    public SpringSecurityConfig(CustomUserDetailsService userDetailsService){
         this.userDetailsService = userDetailsService;
-        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
     @Override
@@ -46,6 +44,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                     .csrf()
                 .disable()
+                .httpBasic()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/favicon.ico",
                         "/**/*.png",
@@ -55,19 +55,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.json",
                         "/index.html")
                 .permitAll()
-                .antMatchers("/api/signup", "/api/auth", "/api/login", "/craft", "/admin/**", "/api/image/*", "/api/resource/*", "/login")
+                .antMatchers("/api/signup", "/api/auth", "/api/image/*", "/login")
                 .permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
                 .exceptionHandling()
-                .authenticationEntryPoint(ajaxAwareAuthenticationEntryPoint())
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-        http
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .authenticationEntryPoint(ajaxAwareAuthenticationEntryPoint());
     }
 
     @Bean

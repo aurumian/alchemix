@@ -1,35 +1,27 @@
 package iad.controller;
 
-import iad.model.User;
-import iad.security.JwtTokenUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.RememberMeServices;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.security.web.context.SecurityContextRepository;
+import static org.springframework.security.web.context.HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY;
 import org.springframework.web.bind.annotation.*;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @RestController
 public class AjaxLoginController {
 
     private AuthenticationManager authenticationManager;
-    private JwtTokenUtil jwtTokenUtil;
 
-    public AjaxLoginController(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil){
+    public AjaxLoginController(AuthenticationManager authenticationManager){
         this.authenticationManager = authenticationManager;
-        this.jwtTokenUtil = jwtTokenUtil;
     }
 
     @PostMapping("/api/auth")
@@ -39,10 +31,16 @@ public class AjaxLoginController {
             HttpServletRequest request,
             HttpServletResponse response
     )throws AuthenticationException {
-        System.out.println("Performing login");
 
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        return ResponseEntity.status(200).body(jwtTokenUtil.generateToken(username));
+        Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        SecurityContext sc = SecurityContextHolder.getContext();
+        sc.setAuthentication(auth);
+
+
+        HttpSession session = request.getSession(true);
+        session.setAttribute(SPRING_SECURITY_CONTEXT_KEY, sc);
+
+        return ResponseEntity.status(200).body("OK");
     }
 
 }
