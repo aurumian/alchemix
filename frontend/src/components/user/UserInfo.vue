@@ -29,7 +29,7 @@
         grid-area: money;
         font-family: fantasy;
         font-size: 20px;
-        color: #7b0009;
+        color: #ffffff;
         text-align: center;
         margin-top: 13px;
     }
@@ -37,7 +37,7 @@
         grid-area: name;
         font-family: fantasy;
         font-size: 22px;
-        color: #7b0009;
+        color: #ffffff;
         text-align: right;
         margin-top: 10px;
     }
@@ -45,7 +45,7 @@
         grid-area: role;
         font-family: fantasy;
         font-size: 20px;
-        color: #a0615f;
+        color: #969696;
         text-align: left;
         vertical-align: center;
         margin-top: 13px;
@@ -65,7 +65,7 @@
     #userBar{
         width: 300px;
         height: 50px;
-        background: #ff0000;
+
         display: grid;
         grid-template-columns: 120px 50px  auto 80px;
         grid-template-areas:
