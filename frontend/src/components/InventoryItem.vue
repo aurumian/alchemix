@@ -1,7 +1,7 @@
 <template>
     <div id="invent">
         <div id="inimg">
-            <img src="../assets/OrangeConePotionSmall.png">
+            <img :src="imgsrc">
         </div>
         <div id="iname">
             {{this.name}} x{{this.quantity}}   Tier : {{tier}}
