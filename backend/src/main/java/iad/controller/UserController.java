@@ -31,10 +31,26 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userRepository.save(user));
     }
 
+    @PostMapping("/admin/api/addmin")
+    public ResponseEntity<User> saveAdmin(@RequestParam String username, @RequestParam String password){
+        User user = new User(username, passwordEncoder.encode(password), roleRepository.findByRole("ROLE_ADMIN"));
+        return ResponseEntity.status(HttpStatus.OK).body(userRepository.save(user));
+    }
+
+    @PostMapping("/admin/api/hesoyam")
+    public ResponseEntity<Long> addMoney(@RequestParam long money, Principal principal){
+        User user = userRepository.getOne(principal.getName());
+        money += user.getMoney();
+        user.setMoney(money);
+        userRepository.save(user);
+        return ResponseEntity.ok(money);
+    }
+
 
     @GetMapping("api/user/info")
     public ResponseEntity<UserDto> getUser(Principal principal){
         User user = userRepository.findByUsername(principal.getName());
         return ResponseEntity.ok(new UserDto(user.getUsername(), user.getImageId(), user.getRole().getRole(), user.getMoney()));
     }
+
 }
