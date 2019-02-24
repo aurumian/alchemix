@@ -8,7 +8,7 @@ import AdminsPage from '../components/admin/AdminsPage'
 import ImageComp from '../components/admin/ImageComp'
 import Inventory from '../components/Inventory'
 import ResourcePage from '../components/admin/ResourcePage'
-import Clan from '../components/Clan'
+import Clan from '../components/clan/Clan'
 
 Vue.use(Router);
 
