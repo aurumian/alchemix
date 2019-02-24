@@ -3,20 +3,19 @@
         <br/>
         Create Clan
         <br/>
-        Choose Clan Name: <input type="text" class="myInput" placeholder=" NAME"/>
+        Choose Clan Name: <input type="text" class="myInput" placeholder=" NAME" ref="name"/>
         <br/>
-        Clan Image: <input type="file" id="file" ref="file" v-on:change="handleFileUpload" align="center">
+        Clan Image: <input type="file" id="file" ref="file" align="center">
         <br>
-        <button class="myButton" v-on:click="submitFile">Create Clan</button>
+        <button class="myButton" v-on:click="submitForm">Create Clan</button>
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default {
         name: "ClanCreate",
-        props:[
-            'uploadUrl'
-        ],
         data(){
             return {
                 file: '',
@@ -24,31 +23,23 @@
             }
         },
         methods:{
-            handleFileUpload(){
-                this.file = this.$refs.file.files[0];
-            },
-            submitFile(){
+            submitForm(){
                 //Initialize form data
                 let formData = new FormData();
 
                 //Add file to form data
-                formData.append('file', this.file);
+                formData.append('file', this.$refs.file.files[0]);
+                formData.append('name', this.$refs.name.value);
 
                 //check file's format
 
 
-                if (this.uploadUrl === '')
-                    this.uploadUrl = '/api/image/upload';
-
                 //Make POST request
-                axios.post(this.uploadUrl,
+                axios.post("/api/clan/create",
                     formData,
                     {
                         headers: {
                             'Content-Type': 'multipart/form-data'
-                        },
-                        onUploadProgress: (progressEvent) => {
-                            this.uploadPercentage = parseInt(Math.round((progressEvent.loaded * 100)/ progressEvent.total));
                         }
                     }
                 ).then(() =>{

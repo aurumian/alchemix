@@ -1,5 +1,6 @@
 package iad.controller;
 
+import iad.dto.ImageRow;
 import iad.model.Image;
 import iad.repository.ImageRepository;
 import org.springframework.http.HttpStatus;

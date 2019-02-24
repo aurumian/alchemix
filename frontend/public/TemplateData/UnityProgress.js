@@ -1,7 +1,6 @@
 function UnityProgress(gameInstance, progress) {
-  if (!gameInstance.Module) {
-      return;
-  }
+  if (!gameInstance.Module)
+    return;
   if (!gameInstance.logo) {
     gameInstance.logo = document.createElement("div");
     gameInstance.logo.className = "logo " + gameInstance.Module.splashScreenStyle;
@@ -20,6 +19,6 @@ function UnityProgress(gameInstance, progress) {
   }
   gameInstance.progress.full.style.width = (100 * progress) + "%";
   gameInstance.progress.empty.style.width = (100 * (1 - progress)) + "%";
-  if (progress >= 1)
+  if (progress == 1)
     gameInstance.logo.style.display = gameInstance.progress.style.display = "none";
 }

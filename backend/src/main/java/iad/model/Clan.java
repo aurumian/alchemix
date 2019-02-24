@@ -1,6 +1,7 @@
 package iad.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,14 +15,32 @@ public class Clan {
 
     private String name;
 
-    @Column(name = "leader_id")
-    private long leaderId;
+    private String description;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "leader_id", referencedColumnName = "user_id")
+    private User leader;
+
+    @OneToMany(mappedBy = "clan", cascade = CascadeType.ALL)
+    private Set<User> clansmen;
 
     @Column(name = "image_id")
     private long imageId;
 
     @OneToMany(mappedBy = "clan")
     private Set<ClanPost> posts;
+
+    public Clan(){
+
+    }
+
+    public Clan(String name, User leader, long imageId){
+        this.name = name;
+        this.leader = leader;
+        this.imageId = imageId;
+        this.clansmen = new HashSet<>();
+        clansmen.add(leader);
+    }
 
     public long getClanId() {
         return clanId;
@@ -39,14 +58,6 @@ public class Clan {
         this.name = name;
     }
 
-    public long getLeaderId() {
-        return leaderId;
-    }
-
-    public void setLeaderId(long leaderId) {
-        this.leaderId = leaderId;
-    }
-
     public long getImageId() {
         return imageId;
     }
@@ -61,5 +72,29 @@ public class Clan {
 
     public void setPosts(Set<ClanPost> posts) {
         this.posts = posts;
+    }
+
+    public User getLeader() {
+        return leader;
+    }
+
+    public void setLeader(User leader) {
+        this.leader = leader;
+    }
+
+    public Set<User> getClansmen() {
+        return clansmen;
+    }
+
+    public void setClansmen(Set<User> clansmen) {
+        this.clansmen = clansmen;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
