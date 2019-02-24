@@ -3,11 +3,13 @@
         <br/>
         Create Clan
         <br/>
+        <hr/>
         Choose Clan Name: <input type="text" class="myInput" placeholder=" NAME" ref="name"/>
         <br/>
         Clan Image: <input type="file" id="file" ref="file" align="center">
         <br>
         <button class="myButton" v-on:click="submitForm">Create Clan</button>
+        <br/>
     </div>
 </template>
 
@@ -85,5 +87,14 @@
     }
     input{
         margin: 20px;
+    }
+    hr{
+        border: 0;
+        height: 3px;
+        background: #ffcccc;
+        background-image: linear-gradient(to right, rgba(255, 204, 204, 0.71), rgba(128, 0, 0, 0.77), rgba(255, 204, 204, 0.69));
+    }
+    button:hover{
+        background: red;
     }
 </style>

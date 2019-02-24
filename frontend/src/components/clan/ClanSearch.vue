@@ -64,4 +64,7 @@
     #bar{
         width:400px;
     }
+    button:hover{
+        background: red;
+    }
 </style>
