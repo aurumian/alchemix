@@ -29,7 +29,7 @@
 
 
                 //make post request
-                axios.post('/api/resource/create', resource).then(()=>{
+                axios.post('/admin/api/resource/create', resource).then(()=>{
 
                 }).catch((err)=>{
                     console.log(err);

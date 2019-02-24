@@ -1,7 +1,7 @@
 <template>
     <div>
-        <FileUploader upload-url="/api/admin/asset_bundle/add"></FileUploader>
-        <url-table url="/api/admin/asset_bundle/table"></url-table>
+        <FileUploader upload-url="/admin/api/asset_bundle/add"></FileUploader>
+        <url-table url="/admin/api/asset_bundle/table"></url-table>
     </div>
 </template>
 

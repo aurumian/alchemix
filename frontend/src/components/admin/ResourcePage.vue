@@ -1,7 +1,7 @@
 <template>
     <div>
         <add-resource></add-resource>
-        <url-table url="/api/resource"></url-table>
+        <url-table url="/admin/api/resource"></url-table>
     </div>
 </template>
 

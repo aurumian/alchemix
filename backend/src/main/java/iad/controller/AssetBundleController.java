@@ -12,13 +12,12 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class AssetBundleController {
 
     @Autowired
     private AssetBundleRepository assetBundleRepository;
 
-    @PostMapping("/admin/asset_bundle/add")
+    @PostMapping("/admin/api/asset_bundle/add")
     public ResponseEntity<Long> saveAssetBundle(@RequestParam MultipartFile file) throws IOException {
 
         AssetBundle assetBundle = assetBundleRepository.save(new AssetBundle(file.getOriginalFilename(), file.getBytes()));
@@ -26,12 +25,12 @@ public class AssetBundleController {
         return ResponseEntity.ok(assetBundle.getAssetBundleId());
     }
 
-    @GetMapping("/admin/asset_bundle/table")
+    @GetMapping("/admin/api/asset_bundle/table")
     public ResponseEntity<List<AssetBundleRow>> getRows(){
         return ResponseEntity.ok(assetBundleRepository.getRows());
     }
 
-    @GetMapping("/asset_bundle/get/{name}")
+    @GetMapping("/api/asset_bundle/get/{name}")
     public ResponseEntity<byte[]> getAssetBundle(@PathVariable String name){
         return ResponseEntity.ok(assetBundleRepository.getByName(name).getBundle());
     }

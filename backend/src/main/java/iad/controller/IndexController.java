@@ -11,21 +11,24 @@ public class IndexController {
         return "index.html";
     }
 
-    @GetMapping("/craft")
-    public String getIndex2(){
+    @GetMapping("/admin/**")
+    public String getIndex0(){
         return "forward:/";
     }
 
-    @GetMapping("/clan")
+    @GetMapping("/craft")
     public String getIndex3(){
         return "forward:/";
     }
 
-    @GetMapping("/admin/**")
+    @GetMapping("/clan")
     public String getIndex4(){
         return "forward:/";
     }
 
-
+    @GetMapping("/inventory")
+    public String getIndex5(){
+        return "forward:/";
+    }
 
 }

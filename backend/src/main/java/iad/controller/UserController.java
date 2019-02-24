@@ -1,6 +1,7 @@
 package iad.controller;
 
 import iad.dto.UserDto;
+import iad.model.ResourceInventory;
 import iad.model.User;
 import iad.repository.RoleRepository;
 import iad.repository.UserRepository;
@@ -12,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -53,6 +56,16 @@ public class UserController {
     public ResponseEntity<UserDto> getUser(Principal principal){
         User user = userRepository.findByUsername(principal.getName());
         return ResponseEntity.ok(new UserDto(user.getUsername(), user.getImageId(), user.getRole().getRole(), user.getMoney()));
+    }
+
+    @GetMapping("api/user/inventory")
+    public ResponseEntity<List<ResourceInventory>> getInventory(Principal principal){
+
+        List<ResourceInventory> resources  = new ArrayList<>();
+
+        resources.add(new ResourceInventory());
+
+        return ResponseEntity.ok(new ArrayList<>());
     }
 
 }

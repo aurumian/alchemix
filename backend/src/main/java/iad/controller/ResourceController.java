@@ -11,11 +11,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/resource")
 public class ResourceController {
 
     private ResourceRepository resourceRepository;
@@ -25,6 +25,7 @@ public class ResourceController {
     }
 
     @GetMapping
+    @RequestMapping("/admin/api/resource")
     public ResponseEntity<List<Resource>> getResources(){
         List<Resource> resources = resourceRepository.findAll();
 
@@ -35,17 +36,11 @@ public class ResourceController {
     }
 
 
-    @PostMapping("/create")
+    @PostMapping("admin/api/create")
     public ResponseEntity<Resource> addResource(@RequestBody ResourceDto resourceDto){
         Resource resource = new Resource(resourceDto);
 
         return new ResponseEntity<>(resourceRepository.save(resource), HttpStatus.OK);
-    }
-
-    @GetMapping("/inventory")
-    public ResponseEntity<List<ResourceInventory>> getInventory(){
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
-        return ResponseEntity.ok(new ArrayList<>());
     }
 
 }
