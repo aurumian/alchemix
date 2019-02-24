@@ -14,6 +14,8 @@ public interface ClanRepository extends CrudRepository<Clan, Long> {
 
     boolean existsByClansmen(User us);
 
+    boolean existsByLeader(User leader);
+
     @Query("select new iad.dto.ClanDto(c.name, c.description, c.imageId) from Clan c")
     List<ClanDto> getRows();
 

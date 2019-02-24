@@ -23,6 +23,20 @@ public class ClanPost {
     @Column(name = "date_posted")
     private Date datePosted;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public ClanPost(){
+
+    }
+
+    public ClanPost(String postText, User user){
+        this.postText = postText;
+        this.user = user;
+        this.datePosted = new Date();
+    }
+
     public long getPostId() {
         return postId;
     }
@@ -53,5 +67,13 @@ public class ClanPost {
 
     public void setDatePosted(Date datePosted) {
         this.datePosted = datePosted;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
