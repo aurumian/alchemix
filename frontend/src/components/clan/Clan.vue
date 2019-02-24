@@ -18,6 +18,9 @@
             <div id="quit">
                 <clan-quit></clan-quit>
             </div>
+            <div id="publish">
+                <clan-post-create></clan-post-create>
+            </div>
         </div>
     </div>
 </template>
@@ -28,9 +31,10 @@
     import ClanImage from "./ClanImage";
     import ClanInfo from "./ClanInfo";
     import ClanQuit from "./ClanQuit";
+    import ClanPostCreate from "./ClanPostCreate";
     export default {
         name: "Clan",
-        components: {ClanQuit, ClanInfo, ClanImage, ClanSearch, ClanCreate}
+        components: {ClanPostCreate, ClanQuit, ClanInfo, ClanImage, ClanSearch, ClanCreate}
     }
 </script>
 
@@ -44,13 +48,17 @@
     #info{
         grid-area: info;
     }
+    #publish{
+        grid-area: publish;
+    }
     #myClan{
         display: grid;
-        grid-template-columns: 250px auto;
+        grid-template-columns: 250px 550px;
         grid-column-gap: 20px;
 
         grid-template-areas:
         'image info'
-        'quit .';
+        'quit publish';
     }
+
 </style>

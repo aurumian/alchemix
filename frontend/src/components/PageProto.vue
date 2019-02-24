@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div id="pagepgrid">
+        <div id="pagepgrid" align="center">
             <div id="PBar">
                 <PersonalBar></PersonalBar>
             </div>
@@ -40,7 +40,7 @@
     #pagepgrid{
         display: grid;
         grid-row-gap: 20px;
-        grid-auto-columns: 200px 220px 800px auto;
+        grid-auto-columns: auto 220px 800px auto;
         grid-template-areas:
             'header header header header'
             '. sidebar main .';
