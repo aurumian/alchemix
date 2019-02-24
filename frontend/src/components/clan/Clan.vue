@@ -21,6 +21,14 @@
             <div id="publish">
                 <clan-post-create></clan-post-create>
             </div>
+            <div id="post">
+                <clan-post username="bl4ze" date-posted="10:37 18-01-2019" message="HI everybody!!!  love to be here <3"></clan-post>
+                <clan-post username="bl4ze" date-posted="10:37 18-01-2019" message="HI everybody!!!  love to be here <3 sdfg dg dfg dfg dfg dfg dfgfg g"></clan-post>
+                <clan-post username="bl4ze" date-posted="10:37 18-01-2019" message="HI everybody!!!  love to be here  dfdsf dsf dsf adsf dsf dsafads  fadsf fdsg fdsfgfdg dfg dfg dfg fdg dfg dfg dfs<3"></clan-post>
+            </div>
+            <div id="members">
+                <clansmen></clansmen>
+            </div>
         </div>
     </div>
 </template>
@@ -32,9 +40,11 @@
     import ClanInfo from "./ClanInfo";
     import ClanQuit from "./ClanQuit";
     import ClanPostCreate from "./ClanPostCreate";
+    import ClanPost from "./ClanPost";
+    import Clansmen from "./Clansmen";
     export default {
         name: "Clan",
-        components: {ClanPostCreate, ClanQuit, ClanInfo, ClanImage, ClanSearch, ClanCreate}
+        components: {Clansmen, ClanPost, ClanPostCreate, ClanQuit, ClanInfo, ClanImage, ClanSearch, ClanCreate}
     }
 </script>
 
@@ -51,14 +61,22 @@
     #publish{
         grid-area: publish;
     }
+    #post{
+        grid-area: post;
+    }
+    #members{
+        grid-area: members;
+    }
     #myClan{
+        margin-left: 10px;
         display: grid;
         grid-template-columns: 250px 550px;
-        grid-column-gap: 20px;
+
 
         grid-template-areas:
         'image info'
-        'quit publish';
+        'quit publish'
+        'members post';
     }
 
 </style>

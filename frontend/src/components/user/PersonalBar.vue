@@ -22,6 +22,7 @@
 
 <style scoped>
     .bar{
+        position: fixed;
         display: grid;
         grid-template-columns: auto 200px 500px 300px auto;
         grid-template-areas:

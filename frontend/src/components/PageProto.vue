@@ -36,6 +36,7 @@
     }
     #extra{
         grid-area: main;
+        margin-top: 50px;
     }
     #pagepgrid{
         display: grid;

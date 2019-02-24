@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="main">
         <div id="menu">
             <router-button to="/clan" text="MyClan"></router-button>
             <router-button to="/inventory" text="MyInventory"></router-button>
@@ -26,9 +26,13 @@
 </script>
 
 <style scoped>
+    #main{
+        position: fixed;
+        margin-top: 50px;
+    }
     #menu{
         text-decoration:none;
-        background: #ffdede;
+        background: #ffcccc;
         width: 170px;
         font-size: 18px;
         margin-left: 16%;

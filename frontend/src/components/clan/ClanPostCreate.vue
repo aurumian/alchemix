@@ -16,9 +16,8 @@
 <style scoped>
     #main{
         margin-top: 20px;
-        margin-bottom: 20px;
         width: 510px;
-        height: 50px;
+        height: 65px;
         background: #ffcccc;
     }
     button, input{
