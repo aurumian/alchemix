@@ -1,5 +1,7 @@
 package iad.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,7 +14,20 @@ public class AssetBundle {
     @Column(name = "ASSET_BUNDLE_ID")
     private long assetBundleId;
 
+    private String name;
+
+    @JsonIgnore
+    @Basic(fetch = FetchType.LAZY)
     private byte[] bundle;
+
+   public AssetBundle(){
+
+   }
+
+    public AssetBundle(String name, byte[] bundle){
+       this.name = name;
+       this.bundle = bundle;
+   }
 
     public long getAssetBundleId() {
         return assetBundleId;
@@ -28,5 +43,13 @@ public class AssetBundle {
 
     public void setBundle(byte[] bundle) {
         this.bundle = bundle;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

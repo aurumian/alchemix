@@ -8,6 +8,7 @@ import AdminsPage from '../components/admin/AdminsPage'
 import ImageComp from '../components/admin/ImageComp'
 import Inventory from '../components/Inventory'
 import ResourcePage from '../components/admin/ResourcePage'
+import AssetBundlePage from '../components/admin/AssetBundlePage'
 import Clan from '../components/Clan'
 
 Vue.use(Router);
@@ -52,6 +53,10 @@ export default new Router({
                 {
                     path: '/admin/admins',
                     component: AdminsPage
+                },
+                {
+                    path: 'asset_bundle',
+                    component: AssetBundlePage
                 }
             ]
         }

@@ -1,4 +1,4 @@
-package iad.controller;
+package iad.dto;
 
 import java.io.Serializable;
 
