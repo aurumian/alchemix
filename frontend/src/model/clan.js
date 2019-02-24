@@ -1,10 +1,10 @@
 export default class {
-    clanName;
+    name;
     imageId;
     description;
 
-    constructor(clanName, imageId, description){
-        this.clanName = clanName;
+    constructor(name, imageId, description){
+        this.name = name;
         this.imageId = imageId;
         this.description = description;
     }

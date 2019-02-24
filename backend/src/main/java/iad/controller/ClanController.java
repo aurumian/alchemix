@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
+import static iad.Constants.MAX_MEMBERS;
+
 @RestController
 @RequestMapping("/api/clan")
 public class ClanController {
@@ -52,9 +54,33 @@ public class ClanController {
         return ResponseEntity.ok("Clan created");
     }
 
+    @PostMapping("/join")
+    public ResponseEntity<String> joinClan(Principal principal, @RequestParam String name){
+        Clan clan = clanRepository.findByName(name);
+
+        if (clan == null)
+            return ResponseEntity.badRequest().body("Clan doesn't exist");
+
+        if (clanRepository.countClansmenByName(name) == MAX_MEMBERS)
+           return ResponseEntity.badRequest().body("Clan has maximum members");
+
+        User user = userRepository.findByUsername(principal.getName());
+
+        if (clanRepository.existsByClansmen(user))
+            return ResponseEntity.badRequest().body("User is already in a clan");
+
+
+
+        user.setClan(clan);
+        userRepository.save(user);
+        return ResponseEntity.ok("Welcome to clan " + name);
+    }
 
     @GetMapping("/get")
-    public ResponseEntity<List<ClanDto>> getClans(){
-        return ResponseEntity.ok(clanRepository.getRows());
+    public ResponseEntity<List<ClanDto>> getClans(@RequestParam(required = false) String query){
+        if (query == null)
+            return ResponseEntity.ok(clanRepository.getRows());
+        else
+            return ResponseEntity.ok(clanRepository.getRowsByQuery(query.toLowerCase()));
     }
 }

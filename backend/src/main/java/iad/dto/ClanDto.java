@@ -10,6 +10,16 @@ public class ClanDto implements Serializable {
 
     private long imageId;
 
+    public ClanDto(){
+
+    }
+
+    public ClanDto(String name, String description, long imageId){
+        this.name = name;
+        this.description = description;
+        this.imageId = imageId;
+    }
+
     public String getName() {
         return name;
     }

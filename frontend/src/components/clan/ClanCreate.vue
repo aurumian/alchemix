@@ -24,6 +24,9 @@
         },
         methods:{
             submitForm(){
+                if (this.$refs.name.value === '')
+                    return;
+
                 //Initialize form data
                 let formData = new FormData();
 

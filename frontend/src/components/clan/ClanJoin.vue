@@ -1,19 +1,19 @@
 <template>
     <div id="item">
         <div id="inimg">
-            <img src="../../assets/OrangeConePotionSmall.png">
+            <img :src="'/api/image/' + clan.imageId">
         </div>
         <div id="iname">
-            {{this.cclan.clanName}}
+            {{this.clan.name}}
         </div>
         <div id="money">
 
         </div>
         <div id="describe">
-            {{cclan.description}}
+            {{clan.description}}
         </div>
         <div id="but">
-            <button>
+            <button v-on:click="joinClan">
                 Join
             </button>
         </div>
@@ -21,12 +21,32 @@
 </template>
 
 <script>
-    import clan from '../../model/clan.js'
+    import Clan from '../../model/clan.js'
+    import axios from 'axios'
+
     export default {
         name: "ClanJoin",
         props: {
-            imgsrc: String,
-            cclan: clan
+            clan: {}
+        },
+        methods:{
+            joinClan(){
+                //Initialize form data
+                let formData = new FormData();
+
+                //Add name to form data
+                formData.append("name", this.clan.name);
+                axios.post("/api/clan/join",
+                    formData
+                ).then(() =>{
+                    //Some handling code
+                    console.log('Success');
+                })
+                .catch(()=>{
+                    //Some handling code
+                    console.log('Failed to upload file')
+                })
+            }
         }
     }
 </script>
