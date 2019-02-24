@@ -1,8 +1,10 @@
 package iad.controller;
 
 import iad.dto.UserDto;
+import iad.model.Clan;
 import iad.model.ResourceInventory;
 import iad.model.User;
+import iad.repository.ClanRepository;
 import iad.repository.RoleRepository;
 import iad.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class UserController {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    ClanRepository clanRepository;
 
     @PostMapping("/api/signup")
     public ResponseEntity<String> saveUser(@RequestParam String username, @RequestParam String password){
@@ -55,7 +60,8 @@ public class UserController {
     @GetMapping("api/user/info")
     public ResponseEntity<UserDto> getUser(Principal principal){
         User user = userRepository.findByUsername(principal.getName());
-        return ResponseEntity.ok(new UserDto(user.getUsername(), user.getImageId(), user.getRole().getRole(), user.getMoney()));
+        return ResponseEntity.ok(new UserDto(user.getUsername(), user.getImageId(), user.getRole().getRole(),
+                user.getMoney(), clanRepository.existsByClansmen(user), clanRepository.existsByLeader(user)));
     }
 
     @GetMapping("api/user/inventory")

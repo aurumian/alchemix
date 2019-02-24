@@ -3,6 +3,8 @@ export default class {
     imageId;
     money;
     role;
+    isInClan;
+    isLeader;
 
     constructor(username, imageId, money, role){
         this.username = username;

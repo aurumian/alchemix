@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import User from './model/user'
+import axios from 'axios'
 
 Vue.config.productionTip = false;
 
@@ -62,8 +63,17 @@ router.afterEach((to, from) =>{
 });
 
 const Store = {
-    user: new User("name", 5, 100, "ROLE_USER")
+    user: new User("name", 5, 100, "ROLE_USER"),
+    update(){
+        axios.get("/api/user/info").then(resp => {
+            if (resp.status === 200){
+                Object.assign(this.user, resp.data);
+            }
+        })
+    }
 };
+
+window.Store = Store;
 
 Vue.mixin({
     data(){

@@ -16,17 +16,12 @@
 </template>
 
 <script>
-    import axios from 'axios'
     //image name money role
     export default {
         name: "UserInfo",
         methods:{
             getUser(){
-                axios.get("/api/user/info").then(resp => {
-                    if (resp.status === 200){
-                        Object.assign(this.user, resp.data);
-                    }
-                })
+                window.Store.update();
             }
         },
         created(){
