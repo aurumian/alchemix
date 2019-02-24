@@ -21,5 +21,13 @@
 </script>
 
 <style scoped>
+    div{
+        background: rgba(8, 0, 255, 0.38);
+        horiz-align: center;
+        padding: 15px;
+        font-family: fantasy;
+        font-size: 22px;
+        color: #05007b;
+    }
 
 </style>

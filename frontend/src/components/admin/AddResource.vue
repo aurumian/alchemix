@@ -1,15 +1,47 @@
 <template>
     <div>
-        Name:<input type="text" ref="name">
-        <br><br>
-        Description:<input type="text" ref="descript">
-        <br><br>
-        Tier:<input type="text" ref="tier">
-        <br><br>
-        ImageId:<input type="text" ref="imageId">
-        <br><br>
-        AssetBundleId<input type="text" ref="abId">
-        <br><br>
+        <table>
+            <tr>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <input type="text" ref="name">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Description:
+                </td>
+                <td>
+                    <input type="text" ref="descript">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Tier:
+                </td>
+                <td>
+                    <input type="text" ref="tier">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ImageId:
+                </td>
+                <td>
+                    <input type="text" ref="imageId">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    AssetBundleId:
+                </td>
+                <td>
+                    <input type="text" ref="abId">
+                </td>
+            </tr>
+        </table>
         <button v-on:click="addResource">Add</button>
     </div>
 </template>
@@ -40,9 +72,32 @@
 </script>
 
 <style scoped>
+    td{
+        text-align: right;
+    }
     div{
-        background-color: #7a97db;
+        background: rgba(8, 0, 255, 0.38);
         horiz-align: center;
         padding: 15px;
+        font-family: fantasy;
+        font-size: 22px;
+        color: #05007b;
+    }
+    button, input{
+        background-color: rgba(1, 0, 255, 0.4);
+        border-radius: 5px;
+        border-style: none;
+        font-family: fantasy;
+        font-size: 22px;
+        color: #03007b;
+        margin: 5px;
+        width: 200px;
+        height: 35px;
+    }
+    button:hover{
+        background: blue;
+    }
+    input{
+        background: rgb(207, 212, 255);
     }
 </style>

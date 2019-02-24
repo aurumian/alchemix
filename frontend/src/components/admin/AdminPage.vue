@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div id="pagegrid">
+        <div id="pagegrid" align="center">
             <div id="ABar">
                 <admin-bar></admin-bar>
             </div>
@@ -34,14 +34,16 @@
     }
     #sidemenu{
         grid-area: sidebar;
+        margin-top: 50px;
     }
     #extra{
         grid-area: main;
+        margin-top: 50px;
     }
     #pagegrid{
         display: grid;
         grid-row-gap: 20px;
-        grid-auto-columns: 200px 300px 800px auto;
+        grid-auto-columns: auto 300px 800px auto;
         grid-template-areas:
                 'header header header header'
                 '. sidebar main .';

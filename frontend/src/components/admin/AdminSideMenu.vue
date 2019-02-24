@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="main">
         <div id="menu">
             <router-button to="/admin/image" text="Image"></router-button>
             <router-button to="/admin/asset_bundle" text="Asset Bundle"></router-button>
@@ -19,6 +19,9 @@
 </script>
 
 <style scoped>
+    #main{
+        position: fixed;
+    }
     #menu{
         text-decoration:none;
         background: #c7d1ff;
