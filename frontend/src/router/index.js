@@ -9,7 +9,7 @@ import ImageComp from '../components/admin/ImageComp'
 import Inventory from '../components/Inventory'
 import ResourcePage from '../components/admin/ResourcePage'
 import AssetBundlePage from '../components/admin/AssetBundlePage'
-import Clan from '../components/Clan'
+import Clan from '../components/clan/Clan'
 
 Vue.use(Router);
 
