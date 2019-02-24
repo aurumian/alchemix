@@ -49,7 +49,7 @@
         font-family: fantasy;
         font-size: 22px;
         color: #ffffff;
-        text-align: right;
+        text-align: left;
         margin-top: 10px;
     }
     #role{
@@ -78,9 +78,9 @@
         height: 50px;
 
         display: grid;
-        grid-template-columns: 120px 50px  auto 80px;
+        grid-template-columns:  50px auto auto 80px;
         grid-template-areas:
-                'name image money role';
+                'image name money role';
     }
     button, input{
         background-color: rgba(255, 1, 0, 0.4);
