@@ -15,7 +15,9 @@ public class Clan {
 
     private String name;
 
-    @OneToOne
+    private String description;
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "leader_id", referencedColumnName = "user_id")
     private User leader;
 
@@ -86,5 +88,13 @@ public class Clan {
 
     public void setClansmen(Set<User> clansmen) {
         this.clansmen = clansmen;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

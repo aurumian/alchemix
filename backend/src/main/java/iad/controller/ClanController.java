@@ -1,5 +1,6 @@
 package iad.controller;
 
+import iad.dto.ClanDto;
 import iad.model.Clan;
 import iad.model.Image;
 import iad.model.User;
@@ -8,15 +9,12 @@ import iad.repository.ImageRepository;
 import iad.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.HashSet;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/clan")
@@ -51,7 +49,12 @@ public class ClanController {
 
         clanRepository.save(clan);
 
-
         return ResponseEntity.ok("Clan created");
+    }
+
+
+    @GetMapping("/get")
+    public ResponseEntity<List<ClanDto>> getClans(){
+        return ResponseEntity.ok(clanRepository.getRows());
     }
 }
