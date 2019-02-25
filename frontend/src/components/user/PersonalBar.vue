@@ -35,10 +35,21 @@
         max-height: 50px;
         align-self: flex-start;
     }
+
+
     .logo{
         margin-left: 15%;
         vertical-align: center;
         grid-area: logo;
+    }
+    .logo[class~=mobile]{
+        display: none;
+    }
+    .bar[class~=mobile]{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-areas:
+                '. userInf .';
     }
     #userBar{
         grid-area: userInf;

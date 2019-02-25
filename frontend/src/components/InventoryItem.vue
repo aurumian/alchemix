@@ -79,6 +79,24 @@
         'image description price '
         'image . button ';
     }
+    #invent[class~=mobile]{
+        width: 90%;
+        height: auto;
+        margin-left: 5%;
+        margin-right: 5%;
+        grid-template-columns: auto ;
+        grid-row-gap: 10px;
+        grid-column-gap: 15px;
+        grid-template-areas:
+                'image '
+                'name '
+                'description'
+                'price'
+                'button';
+    }
+    #but[class~=mobile] button, input{
+        margin-top:0;
+    }
     button, input{
         background-color: rgba(255, 1, 0, 0.4);
         border-radius: 5px;

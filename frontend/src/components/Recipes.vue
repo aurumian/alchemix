@@ -5,6 +5,8 @@
         </div>
         <div id="recipeList">
             <recipe name="cool stuff" tier="1" description="the coolest"></recipe>
+            <recipe name="cool stuff" tier="1" description="the coolest"></recipe>
+            <recipe name="cool stuff" tier="1" description="the coolest"></recipe>
         </div>
     </div>
 </template>
@@ -94,5 +96,13 @@
     }
     #bar{
         width: 400px;
+    }
+
+    #search[class~=mobile]{
+        width: 100%;
+    }
+
+    #search[class~=mobile] input{
+        width: 80%;
     }
 </style>

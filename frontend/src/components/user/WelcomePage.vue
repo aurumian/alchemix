@@ -55,7 +55,7 @@
 
     .field[class~=mobile] {
         display: grid;
-        grid-template-columns: auto 300px  auto;
+        grid-template-columns: auto 330px  auto;
         grid-template-areas:
                 'header header header'
                 '. main .';
