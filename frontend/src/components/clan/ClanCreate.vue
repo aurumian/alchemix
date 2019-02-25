@@ -10,6 +10,7 @@
         <br>
         <button class="myButton" v-on:click="submitForm">Create Clan</button>
         <br/>
+
     </div>
 </template>
 
@@ -64,7 +65,7 @@
     #main{
         margin-bottom: 20px;
         width: 780px;
-        height: 270px;
+        height: auto;
         background: #ffcccc;
     }
     .myButton, button, .myInput{
@@ -97,4 +98,5 @@
     button:hover{
         background: red;
     }
+
 </style>
