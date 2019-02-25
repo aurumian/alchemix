@@ -22,7 +22,7 @@
                     Tier:
                 </td>
                 <td>
-                    <input type="text" ref="tier">
+                    <input type="number" ref="tier" min="1">
                 </td>
             </tr>
             <tr>
@@ -30,7 +30,7 @@
                     ImageId:
                 </td>
                 <td>
-                    <input type="text" ref="imageId">
+                    <input type="number" ref="imageId" min="1">
                 </td>
             </tr>
             <tr>
@@ -38,7 +38,7 @@
                     AssetBundleId:
                 </td>
                 <td>
-                    <input type="text" ref="abId">
+                    <input type="number" ref="abId" min="1">
                 </td>
             </tr>
         </table>

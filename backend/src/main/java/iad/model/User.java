@@ -40,7 +40,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<ResourceInventory> resourceInventory;
 
-    @OneToMany(mappedBy = "seller")
+    @OneToMany(mappedBy = "id.seller", cascade = CascadeType.ALL)
     private Set<ResourceOnSale> resourcesOnSale;
 
     @ManyToOne(fetch = FetchType.LAZY)

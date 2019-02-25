@@ -10,4 +10,6 @@ public interface ResourceRepository extends CrudRepository<Resource, Long> {
 
     @Nullable
     List<Resource> findAll();
+
+    Resource findByResourceId(long id);
 }
