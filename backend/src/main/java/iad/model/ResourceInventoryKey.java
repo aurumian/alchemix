@@ -8,12 +8,10 @@ import java.io.Serializable;
 
 @Embeddable
 public class ResourceInventoryKey implements Serializable {
-    @Id
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "resource_id")
     private Resource resource;

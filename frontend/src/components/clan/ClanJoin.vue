@@ -123,4 +123,14 @@
                 ' description  '
                 ' button ';
     }
+
+    #iname[class~=mobile]{
+        text-align: center;
+    }
+    #describe[class~=mobile]{
+        text-align: center;
+    }
+    #but[class~=mobile] button{
+        margin: 0;
+    }
 </style>

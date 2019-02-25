@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import User from './model/user'
 import axios from 'axios'
+import PlatformService from './services/PlatformService'
 
 Vue.config.productionTip = false;
 
@@ -82,6 +83,11 @@ Vue.mixin({
         return {
             user: Store.user
         }
+    },
+    mounted(){
+        this.$nextTick(()=>{
+            PlatformService.check();
+        })
     }
 });
 new Vue({

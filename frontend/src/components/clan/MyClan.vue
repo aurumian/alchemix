@@ -88,9 +88,10 @@
                 'members post';
     }
     #myClan[class~=mobile]{
-        margin-left: 10px;
+        margin-left: 0;
         display: grid;
         grid-template-columns: auto;
+        grid-row-gap: 10px;
 
 
         grid-template-areas:
@@ -99,6 +100,6 @@
                 'quit'
                 'members'
                 'publish'
-                'members post';
+                'post';
     }
 </style>
