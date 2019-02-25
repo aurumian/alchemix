@@ -179,4 +179,21 @@ public class ClanController {
         Clan clan = userRepository.findByUsername(principal.getName()).getClan();
         return ResponseEntity.ok(new ClanDto(clan.getName(),clan.getDescription(), clan.getImageId()));
     }
+
+    @PostMapping("/descript")
+    public ResponseEntity<String> setDescription(@RequestParam String description, Principal principal){
+
+        User user = userRepository.findByUsername(principal.getName());
+
+        Clan clan = user.getClan();
+
+        if (clan == null || clan.getLeader().getUserId() != user.getUserId())
+            return ResponseEntity.badRequest().body("User is not in a clan or is not a leader");
+
+        clan.setDescription(description);
+
+        clanRepository.save(clan);
+
+        return ResponseEntity.ok(description);
+    }
 }

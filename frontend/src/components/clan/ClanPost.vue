@@ -8,7 +8,7 @@
                 {{username}}
             </div>
             <div id="date">
-                {{datePosted}}
+                {{date}}
             </div>
 
         </div>
@@ -27,6 +27,19 @@
             imageId: Number,
             datePosted: String,
             message: String
+        },
+        computed:{
+            date(){
+                let options = {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                };
+
+                return new Date(this.datePosted).toLocaleDateString("en-US", options);
+            }
         }
     }
 </script>
