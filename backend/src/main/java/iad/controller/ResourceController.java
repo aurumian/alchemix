@@ -1,10 +1,7 @@
 package iad.controller;
 
 import iad.dto.ResourceDto;
-import iad.model.Resource;
-import iad.model.ResourceInventory;
-import iad.model.ResourceOnSale;
-import iad.model.User;
+import iad.model.*;
 import iad.repository.ResourceOnSaleRepository;
 import iad.repository.ResourceRepository;
 import iad.repository.UserRepository;
@@ -16,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Response;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,19 +54,35 @@ public class ResourceController {
 
     @PostMapping("/admin/api/resource/putOnSale")
     public ResponseEntity<String> putOnSale(@RequestParam long resourceId, @RequestParam long quantity, @RequestParam long price, Principal principal){
+
         if (quantity == 0) return ResponseEntity.badRequest().body("Quantity should not be equal to 0");
         if (price <= 0) return ResponseEntity.badRequest().body("Price must be greater than 0");
-        resourceOnSaleRepository.save(new ResourceOnSale(quantity, price, userRepository.getOneByUsername(principal.getName()), resourceRepository.findByResourceId(resourceId)));
 
-        /*
-        User user = userRepository.findByUsername(principal.getName());
+        Resource resource = resourceRepository.findByResourceId(resourceId);
+        if (resource == null)
+            return ResponseEntity.badRequest().body("Resource with resourceId " + resourceId + " doesn't exist");
 
-        ResourceOnSale resource = new ResourceOnSale(quantity, price, user, resourceRepository.findByResourceId(resourceId));
+        User user = userRepository.getOneByUsername(principal.getName());
 
-        user.getResourcesOnSale().add(resource);
+        ResourceOnSale resourceOnSale = resourceOnSaleRepository.findById(new ResourceOnSaleKey(user, resource));
 
-        userRepository.save(user);
-        */
+        if (resourceOnSale == null)
+            resourceOnSale = new ResourceOnSale(quantity, price, userRepository.getOneByUsername(principal.getName()), resourceRepository.findByResourceId(resourceId));
+        else {
+            if (resourceOnSale.getQuantity() > 0)
+                if (quantity < 0)
+                    //we want to make the resource infinite
+                    resourceOnSale.setQuantity(-1);
+                else
+                    //we want increase quantity of the resource
+                    resourceOnSale.setQuantity(resourceOnSale.getQuantity() + quantity);
+            else
+                if (quantity > 0)
+                    //we want to make resource finite
+                    resourceOnSale.setQuantity(quantity);
+        }
+
+        resourceOnSaleRepository.save(resourceOnSale);
 
         return ResponseEntity.ok("Put resource on sale");
     }
