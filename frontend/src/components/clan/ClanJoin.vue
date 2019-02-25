@@ -94,7 +94,7 @@
         grid-template-rows: auto 50px 70px;
         grid-template-areas:
                 'image name . '
-                'image description price '
+                'image description . '
                 'image . button ';
     }
     button, input{
@@ -108,5 +108,19 @@
         width: 100px;
         height: 35px;
         text-align: center;
+    }
+    #item[class~=mobile]{
+        margin-bottom: 20px;
+        width: 100%;
+        height: auto;
+        background: #ffcccc;
+        display: grid;
+        grid-template-columns: auto ;
+        grid-row-gap: 10px;
+        grid-template-areas:
+                'image '
+                ' name  '
+                ' description  '
+                ' button ';
     }
 </style>

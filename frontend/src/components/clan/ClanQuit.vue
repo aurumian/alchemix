@@ -43,4 +43,11 @@
     button:hover{
         background: red;
     }
+
+    #main[class~=mobile]{
+        background: #ffcccc;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 </style>

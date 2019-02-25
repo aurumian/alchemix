@@ -24,4 +24,9 @@
         margin: 10px;
         border-radius: 5%;
     }
+    div[class~=mobile]{
+        width: 100%;
+        height: auto;
+        background: #ffcccc;
+    }
 </style>

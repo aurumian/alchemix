@@ -59,4 +59,15 @@
         margin-left: 15px;
         margin-bottom: 0;
     }
+
+    #main1[class~=mobile]{
+        margin: 10px;
+        width: 200px;
+        height: 50px;
+        background: #ff9797;
+        font-family: fantasy;
+        font-size: 22px;
+        color: #7b0009;
+        padding-bottom: 5px;
+    }
 </style>

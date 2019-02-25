@@ -86,4 +86,14 @@
         border-radius: 5px;
     }
 
+
+    #main[class~=mobile]{
+        width: 100%;
+        height: 250px;
+        background: #ffcccc;
+        font-family: fantasy;
+        font-size: 26px;
+        color: #7b0009;
+
+    }
 </style>

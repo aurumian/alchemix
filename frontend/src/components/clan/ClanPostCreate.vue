@@ -60,4 +60,13 @@
     button:hover{
         background: red;
     }
+    #main[class~=mobile]{
+        margin-top: 20px;
+        width: 100%;
+        height: 65px;
+        background: #ffcccc;
+    }
+    #main[class~=mobile] input{
+        width: 50%;
+    }
 </style>
