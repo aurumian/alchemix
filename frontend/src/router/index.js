@@ -10,6 +10,7 @@ import Inventory from '../components/Inventory'
 import ResourcePage from '../components/admin/ResourcePage'
 import AssetBundlePage from '../components/admin/AssetBundlePage'
 import Clan from '../components/clan/Clan'
+import FullInventory from '../components/FullInventory'
 
 Vue.use(Router);
 
@@ -29,8 +30,15 @@ export default new Router({
                     component: UnityGame
                 },
                 {
-                    path: 'inventory',
-                    component: Inventory
+                    path: 'fullinventory',
+                    component: FullInventory,
+                    children:[
+                        {
+                            path: 'inventory',
+                            component: Inventory
+                        }
+
+                    ]
                 },
                 {
                     path: 'clan',
