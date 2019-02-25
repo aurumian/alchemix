@@ -67,4 +67,12 @@
     button:hover{
         background: red;
     }
+
+    #search[class~=mobile]{
+        width: 100%;
+    }
+
+    #search[class~=mobile] input{
+        width: 50%;
+    }
 </style>

@@ -81,12 +81,18 @@
     #inventor::-webkit-scrollbar{
         display: none;
     }
+    #inventor[class~=mobile]{
+        max-height: 100%;
+    }
 
     #search{
         margin-bottom: 20px;
         width: 780px;
         height: 70px;
         background: #ffcccc;
+    }
+    #search[class~=mobile]{
+        width: 100%;
     }
     button, input{
         background-color: rgba(255, 1, 0, 0.4);
@@ -103,6 +109,10 @@
 
     #bar{
         width:400px;
+    }
+
+    #search[class~=mobile] input{
+        width: 80%;
     }
 
 </style>

@@ -3,11 +3,11 @@ export default {
         let Class;
 
         //Determine device type
-        if (window.innerWidth < 776){
+        if (window.outerWidth < 776){
             //mobile
             Class = 'mobile';
         }
-        else if (window.innerWidth < 1056){
+        else if (window.outerWidth < 1056){
             //tablet
             Class = 'desktop';
         }

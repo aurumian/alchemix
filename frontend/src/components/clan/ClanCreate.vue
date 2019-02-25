@@ -99,4 +99,15 @@
         background: red;
     }
 
+
+    #main[class~=mobile]{
+        margin-bottom: 20px;
+        width: 100%;
+        height: auto;
+        background: #ffcccc;
+    }
+    #main[class~=mobile] input[type=file]{
+        margin: 0;
+        width: 100%;
+    }
 </style>

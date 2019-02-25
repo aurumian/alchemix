@@ -13,7 +13,9 @@
                 <router-view></router-view>
             </div>
         </div>
-
+        {{innerWidth}}
+        <br>
+        {{outerWidth}}
     </div>
 </template>
 
@@ -23,7 +25,17 @@
     import Inventory from "./Inventory";
     export default {
         name: "PageProto",
-        components: {Inventory, SideMenu, PersonalBar}
+        components: {Inventory, SideMenu, PersonalBar},
+        data(){
+            return{
+                innerWidth: Number,
+                outerWidth: Number
+            }
+        },
+        mounted(){
+            this.innerWidth = window.innerWidth;
+            this.outerWidth = window.outerWidth;
+        }
     }
 </script>
 
@@ -45,6 +57,18 @@
         grid-template-areas:
             'header header header header'
             '. sidebar main .';
+    }
+    #pagepgrid[class~=mobile]{
+        display: grid;
+        grid-row-gap: 20px;
+        grid-auto-columns: auto auto auto;
+        grid-template-areas:
+                'header header header'
+                '. sidebar .'
+                '. main .';
+    }
+    #extra[class~=mobile]{
+        margin-top: 0;
     }
     .ConePotion{
         border-radius: 50%;

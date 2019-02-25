@@ -87,4 +87,18 @@
                 'quit publish'
                 'members post';
     }
+    #myClan[class~=mobile]{
+        margin-left: 10px;
+        display: grid;
+        grid-template-columns: auto;
+
+
+        grid-template-areas:
+                'image'
+                'info'
+                'quit'
+                'members'
+                'publish'
+                'members post';
+    }
 </style>

@@ -102,4 +102,15 @@
         margin-left: 10px;
         padding-bottom: 8px;
     }
+
+    #bar[class~=mobile]{
+        display: grid;
+        grid-template-columns: 50px auto auto;
+        grid-template-areas:
+                'image name date';
+    }
+
+    #main[class~=mobile]{
+        width: 100%;
+    }
 </style>

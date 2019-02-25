@@ -36,4 +36,8 @@
         padding-top: 10px;
         padding-bottom: 10px;
     }
+
+    #main[class~=mobile]{
+        width: 100%;
+    }
 </style>

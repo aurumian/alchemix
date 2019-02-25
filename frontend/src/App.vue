@@ -9,10 +9,16 @@
 export default {
     name: 'app',
     updated(){
-        PlatformService.check();
+        this.$nextTick(function()
+        {
+            PlatformService.check();
+        })
     },
     mounted(){
-        PlatformService.check();
+        this.$nextTick(function()
+        {
+            PlatformService.check();
+        })
     }
 }
 </script>

@@ -27,15 +27,22 @@
 
 <style scoped>
     #main{
-        position: fixed;
         margin-top: 50px;
+    }
+    #main[class~=desktop]{
+        position: fixed;
     }
     #menu{
         text-decoration:none;
         background: #ffcccc;
         width: 170px;
         font-size: 18px;
-        margin-left: 16%;
+    }
+    #menu[class~=mobile]{
+        width: 100%;
+    }
+    #main[class~=mobile]{
+        margin-top: 30px;
     }
     #menu a{
         text-decoration: none;
@@ -52,7 +59,12 @@
         width: 140px;
         height: 35px;
     }
+    #menu[class~=mobile] button{
+        width: 85%;
+        margin: 10px;
+    }
     button:hover{
         background-color: red;
+
     }
 </style>

@@ -94,4 +94,22 @@
         height: 35px;
         text-align: center;
     }
+    #main[class~=mobile]{
+        margin-bottom: 20px;
+        width: 90%;
+        height: auto;
+        background: #ffcccc;
+        display: grid;
+        grid-template-columns: auto;
+        grid-row-gap: 10px;
+        grid-column-gap: 15px;
+        grid-template-rows: 220px 50px auto;
+        grid-template-areas:
+                'image '
+                'name '
+                'description';
+    }
+    #iname[class~=mobile]{
+        text-align: center;
+    }
 </style>
