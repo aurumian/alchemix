@@ -11,6 +11,7 @@ import ResourcePage from '../components/admin/ResourcePage'
 import AssetBundlePage from '../components/admin/AssetBundlePage'
 import Clan from '../components/clan/Clan'
 import FullInventory from '../components/FullInventory'
+import Recipes from '../components/Recipes'
 
 Vue.use(Router);
 
@@ -36,6 +37,10 @@ export default new Router({
                         {
                             path: 'inventory',
                             component: Inventory
+                        },
+                        {
+                            path: 'recipes',
+                            component: Recipes
                         }
 
                     ]

@@ -2,7 +2,7 @@
     <div id="main">
         <div id="buttons">
             <router-button text="Resources" to="/fullinventory/inventory"></router-button>
-            <router-button text="Recipes" to="/fullinventory"></router-button>
+            <router-button text="Recipes" to="/fullinventory/recipes"></router-button>
         </div>
         <div id="tab">
             <router-view></router-view>
