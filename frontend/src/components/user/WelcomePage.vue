@@ -41,7 +41,7 @@
     .login{
         grid-area: main;
     }
-    .field{
+    .field[class~=desktop] {
         display: grid;
         grid-template-columns: auto 500px 500px auto;
         grid-template-areas:
@@ -53,9 +53,24 @@
         margin: auto;
     }
 
+    .field[class~=mobile] {
+        display: grid;
+        grid-template-columns: auto 300px  auto;
+        grid-template-areas:
+                'header header header'
+                '. main .';
+        width: 100%;
+        height: 700px;
+
+        margin: auto;
+    }
+
     .img{
 
         margin-left: 30%;
+    }
+    .img[class~=mobile]{
+        display: none;
     }
     .login{
 

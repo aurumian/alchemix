@@ -5,8 +5,15 @@
 </template>
 
 <script>
+    import PlatformService from './services/PlatformService'
 export default {
-  name: 'app'
+    name: 'app',
+    updated(){
+        PlatformService.check();
+    },
+    mounted(){
+        PlatformService.check();
+    }
 }
 </script>
 

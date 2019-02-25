@@ -75,6 +75,8 @@ const Store = {
 
 window.Store = Store;
 
+
+
 Vue.mixin({
     data(){
         return {
