@@ -109,4 +109,10 @@
         height: 35px;
         text-align: center;
     }
+    #iname[class~=mobile]{
+        text-align: center;
+    }
+    #describe[class~=mobile]{
+        text-align: center;
+    }
 </style>
