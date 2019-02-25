@@ -1,12 +1,12 @@
 <template>
     <div id="main">
         <div id="name">
-            Clan Info
+            {{name}}
         </div>
         <hr/>
-        <duv id="describe">
+        <div id="describe">
             {{description}}
-        </duv>
+        </div>
 
         <br/>
     </div>
@@ -16,7 +16,11 @@
     export default {
         name: "ClanInfo",
         props:{
-            description: String
+            description: String,
+            name: String
+        },
+        mounted(){
+
         }
     }
 </script>

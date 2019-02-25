@@ -1,19 +1,22 @@
 <template>
     <div>
         <div id="noClan">
-            <div id="create">
-                <clan-create></clan-create>
-            </div>
-            <div id="join">
-                <clan-search></clan-search>
+            <div v-if="!user.isInClan">
+                <div id="create">
+                    <clan-create></clan-create>
+                </div>
+                <div id="join">
+                    <clan-search></clan-search>
+                </div>
             </div>
         </div>
-        <div id="myClan">
+
+        <div id="myClan" v-if="user.isInClan">
             <div id="image">
-                <clan-image></clan-image>
+                <clan-image :image-id="clan.imageId"></clan-image>
             </div>
             <div id="info">
-                <clan-info description="best clan ever <3 <3 <3 "></clan-info>
+                <clan-info :name="clan.name" :description="clan.description"></clan-info>
             </div>
             <div id="quit">
                 <clan-quit></clan-quit>
@@ -22,9 +25,7 @@
                 <clan-post-create></clan-post-create>
             </div>
             <div id="post">
-                <clan-post username="bl4ze" date-posted="10:37 18-01-2019" message="HI everybody!!!  love to be here <3"></clan-post>
-                <clan-post username="bl4ze" date-posted="10:37 18-01-2019" message="HI everybody!!!  love to be here <3 sdfg dg dfg dfg dfg dfg dfgfg g"></clan-post>
-                <clan-post username="bl4ze" date-posted="10:37 18-01-2019" message="HI everybody!!!  love to be here  dfdsf dsf dsf adsf dsf dsafads  fadsf fdsg fdsfgfdg dfg dfg dfg fdg dfg dfg dfs<3"></clan-post>
+                <clan-post v-for="post in posts" :username="post.clansman.username" :date-posted="post.datePosted" :message="post.text" :image-id="post.clansman.imageId"></clan-post>
             </div>
             <div id="members">
                 <clansmen></clansmen>
@@ -42,9 +43,27 @@
     import ClanPostCreate from "./ClanPostCreate";
     import ClanPost from "./ClanPost";
     import Clansmen from "./Clansmen";
+    import axios from 'axios';
+
     export default {
         name: "Clan",
-        components: {Clansmen, ClanPost, ClanPostCreate, ClanQuit, ClanInfo, ClanImage, ClanSearch, ClanCreate}
+        components: {Clansmen, ClanPost, ClanPostCreate, ClanQuit, ClanInfo, ClanImage, ClanSearch, ClanCreate},
+        data(){
+            return{
+                clan: {},
+                posts: []
+            }
+        },
+        mounted(){
+            axios.get("/api/clan/myClan").then(resp =>{
+                if (resp.status === 200)
+                    this.clan = resp.data;
+            });
+            axios.get("/api/clan/posts").then(resp =>{
+                if (resp.status === 200)
+                    this.posts = resp.data;
+            })
+        }
     }
 </script>
 

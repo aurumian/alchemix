@@ -2,7 +2,7 @@
     <div id="main">
         <div id="bar">
             <div id="image">
-                <img src="../../assets/GreenConePotionSmall.png">
+                <img :src="'/api/image/' + imageId">
             </div>
             <div id="name" >
                 {{username}}
@@ -25,7 +25,7 @@
         props: {
             username: String,
             imageId: Number,
-            datePosted: Date,
+            datePosted: String,
             message: String
         }
     }

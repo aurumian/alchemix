@@ -1,8 +1,8 @@
 <template>
     <div id="main1">
         <div id="bar">
-            <div id="image">
-                <img src="../../assets/GreenConePotionSmall.png">
+            <div id="image" v-if="imageId">
+                <img :src="'/api/image/' + imageId">
             </div>
             <div id="name" >
                 {{username}}

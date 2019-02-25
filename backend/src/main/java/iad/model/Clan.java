@@ -21,13 +21,13 @@ public class Clan {
     @JoinColumn(name = "leader_id", referencedColumnName = "user_id")
     private User leader;
 
-    @OneToMany(mappedBy = "clan", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "clan", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<User> clansmen;
 
     @Column(name = "image_id")
     private long imageId;
 
-    @OneToMany(mappedBy = "clan")
+    @OneToMany(mappedBy = "clan", cascade = CascadeType.ALL)
     private Set<ClanPost> posts;
 
     public Clan(){
