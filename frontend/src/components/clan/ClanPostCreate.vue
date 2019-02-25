@@ -23,7 +23,7 @@
                 axios.post("/api/clan/post", formData).then(resp =>{
                     if (resp.status === 200)
                         if (this.callback)
-                        this.callback(resp.data);
+                            this.callback(resp.data);
                 })
             }
         }

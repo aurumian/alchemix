@@ -10,7 +10,7 @@
             <clan-quit></clan-quit>
         </div>
         <div id="publish">
-            <clan-post-create></clan-post-create>
+            <clan-post-create :callback="addPost"></clan-post-create>
         </div>
         <div id="post">
             <clan-post v-for="post in posts" :username="post.clansman.username" :date-posted="post.datePosted" :message="post.text" :image-id="post.clansman.imageId"></clan-post>
@@ -48,6 +48,11 @@
                 if (resp.status === 200)
                     this.posts = resp.data;
             })
+        },
+        methods:{
+            addPost(post){
+                this.posts.unshift(post);
+            }
         }
     }
 </script>
