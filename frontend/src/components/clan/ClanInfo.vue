@@ -1,22 +1,46 @@
 <template>
     <div id="main">
         <div id="name">
-            Clan Info
+            {{name}}
         </div>
         <hr/>
-        <duv id="describe">
-            {{description}}
-        </duv>
+        <div id="describe">
+            <span v-if="!user.isLeader">
+                {{description}}
+            </span>
+
+            <span v-if="user.isLeader">
+                <textarea :value="description" cols="30" rows="5" placeholder="Your clan description" ref="descr" v-on:change="descrChange"></textarea>
+            </span>
+        </div>
+
+
 
         <br/>
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         name: "ClanInfo",
         props:{
-            description: String
+            description: String,
+            name: String
+        },
+        methods:{
+            descrChange(){
+
+                let formData = new FormData();
+
+                formData.append('description', this.$refs.descr.value);
+
+                axios.post('/api/clan/descript', formData).then(resp =>{
+
+                }).catch(err =>{
+                    this.$refs.descr.value = this.description;
+                })
+            }
         }
     }
 </script>
@@ -47,6 +71,19 @@
         height: 3px;
         background: #ffcccc;
         background-image: linear-gradient(to right, rgba(255, 204, 204, 0.71), rgba(128, 0, 0, 0.77), rgba(255, 204, 204, 0.69));
+    }
+
+    textarea{
+        background-color: inherit;
+        border: none;
+        font-family: fantasy;
+        font-size: 26px;
+        color: inherit;
+    }
+    textarea:focus{
+        outline: none;
+        border: solid 2px #c66a63;
+        border-radius: 5px;
     }
 
 </style>

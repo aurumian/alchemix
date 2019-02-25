@@ -1,15 +1,32 @@
 <template>
     <div id="main">
-        <div align="center" id="search">
-            <input id="bar" type="text"/>
-            <button>Post</button>
+        <div align="center">
+            <input id="bar" type="text" ref="text"/>
+            <button  v-on:click="clicked">Post</button>
         </div>
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
-        name: "ClanPostCreate"
+        name: "ClanPostCreate",
+        props:{
+            callback: Function
+        },
+        methods:{
+            clicked(){
+                let formData = new FormData();
+
+                formData.append('text', this.$refs.text.value);
+
+                axios.post("/api/clan/post", formData).then(resp =>{
+                    if (resp.status === 200)
+                        if (this.callback)
+                        this.callback(resp.data);
+                })
+            }
+        }
     }
 </script>
 

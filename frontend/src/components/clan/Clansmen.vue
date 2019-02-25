@@ -1,16 +1,26 @@
 <template>
     <div id="main">
-        <clansman username="bl4ze"></clansman>
-        <clansman username="bl4ze"></clansman>
-        <clansman username="bl4ze"></clansman>
+        <clansman v-for="clansman in clansmen" :username="clansman.username" :image-id="clansman.imageId"></clansman>
     </div>
 </template>
 
 <script>
     import Clansman from "./Clansman";
+    import axios from 'axios'
     export default {
         name: "Clansmen",
-        components: {Clansman}
+        components: {Clansman},
+        data(){
+            return {
+                clansmen: []
+            }
+        },
+        mounted(){
+            axios.get("/api/clan/clansmen").then(resp =>{
+                if (resp.status === 200)
+                    this.clansmen = resp.data;
+            })
+        }
     }
 </script>
 

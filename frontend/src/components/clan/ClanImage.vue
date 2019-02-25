@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="../../assets/VioletConePotionSmall.png">
+        <img v-if="imageId" :src="'/api/image/' + imageId">
     </div>
 </template>
 
@@ -8,7 +8,7 @@
     export default {
         name: "ClanImage",
         props: {
-            imgsrc: String
+            imageId: Number
         }
     }
 </script>

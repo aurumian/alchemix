@@ -2,13 +2,13 @@
     <div id="main">
         <div id="bar">
             <div id="image">
-                <img src="../../assets/GreenConePotionSmall.png">
+                <img :src="'/api/image/' + imageId">
             </div>
             <div id="name" >
                 {{username}}
             </div>
             <div id="date">
-                {{datePosted}}
+                {{date}}
             </div>
 
         </div>
@@ -25,8 +25,21 @@
         props: {
             username: String,
             imageId: Number,
-            datePosted: Date,
+            datePosted: String,
             message: String
+        },
+        computed:{
+            date(){
+                let options = {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                };
+
+                return new Date(this.datePosted).toLocaleDateString("en-US", options);
+            }
         }
     }
 </script>

@@ -49,11 +49,11 @@
                     }
                 ).then(() =>{
                     //Some handling code
-                    console.log('Success');
+                    window.Store.update();
                 })
                     .catch(()=>{
                         //Some handling code
-                        console.log('Failed to upload file')
+
                     })
             }
         }

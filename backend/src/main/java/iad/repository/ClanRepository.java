@@ -19,11 +19,14 @@ public interface ClanRepository extends CrudRepository<Clan, Long> {
     @Query("select new iad.dto.ClanDto(c.name, c.description, c.imageId) from Clan c")
     List<ClanDto> getRows();
 
-    long countClansmenByName(String name);
+    @Query("select count(u.id) from Clan c join iad.model.User u on u.clan = c where c.name = ?1")
+    long countClansmen(String clanName);
 
     @Nullable
     Clan findByName(String name);
 
     @Query("select new iad.dto.ClanDto(c.name, c.description, c.imageId) from Clan c where lower(c.name) like ?1%")
     List<ClanDto> getRowsByQuery(String query);
+
+
 }

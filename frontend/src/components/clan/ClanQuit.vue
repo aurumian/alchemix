@@ -1,14 +1,23 @@
 <template>
     <div id="main" align="center">
-        <button>
+        <button v-on:click="quit">
             Quit Clan
         </button>
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
-        name: "ClanQuit"
+        name: "ClanQuit",
+        methods:{
+            quit(){
+                axios.post("/api/clan/quit").then(resp =>{
+                    if (resp.status === 200)
+                        window.Store.update();
+                })
+            }
+        }
     }
 </script>
 

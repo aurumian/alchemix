@@ -1,10 +1,13 @@
 package iad.controller;
 
 import iad.dto.ClanDto;
+import iad.dto.Clansman;
+import iad.dto.Post;
 import iad.model.Clan;
 import iad.model.ClanPost;
 import iad.model.Image;
 import iad.model.User;
+import iad.repository.ClanPostRepository;
 import iad.repository.ClanRepository;
 import iad.repository.ImageRepository;
 import iad.repository.UserRepository;
@@ -15,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static iad.Constants.MAX_MEMBERS;
 
@@ -31,6 +36,9 @@ public class ClanController {
 
     @Autowired
     private ClanRepository clanRepository;
+
+    @Autowired
+    private ClanPostRepository clanPostRepository;
 
     @PostMapping("/create")
     public ResponseEntity<String> createClan(@RequestParam String name, @RequestParam(required = false) MultipartFile file, Principal principal) throws IOException {
@@ -62,7 +70,7 @@ public class ClanController {
         if (clan == null)
             return ResponseEntity.badRequest().body("Clan doesn't exist");
 
-        if (clanRepository.countClansmenByName(name) == MAX_MEMBERS)
+        if (clanRepository.countClansmen(name) == MAX_MEMBERS)
            return ResponseEntity.badRequest().body("Clan has maximum members");
 
         User user = userRepository.findByUsername(principal.getName());
@@ -84,7 +92,7 @@ public class ClanController {
 
         boolean isLeader = clanRepository.existsByLeader(user);
 
-        long numClansmen = clanRepository.countClansmenByName(user.getClan().getName());
+        long numClansmen = clanRepository.countClansmen(user.getClan().getName());
 
         Clan clan = user.getClan();
 
@@ -111,8 +119,25 @@ public class ClanController {
         return ResponseEntity.ok("Successfully quit clan. " + str);
     }
 
+    @GetMapping("/clansmen")
+    public ResponseEntity<List<Clansman>> getClansmen(Principal principal){
+
+        User user = userRepository.findByUsername(principal.getName());
+
+        if (!clanRepository.existsByClansmen(user))
+            return ResponseEntity.badRequest().body(null);
+
+        Set<User> userSet = user.getClan().getClansmen();
+
+        List<Clansman> clansmen = new ArrayList<>(userSet.size());
+
+        for (User u: userSet)
+            clansmen.add(new Clansman(u.getUsername(), u.getImageId()));
+        return ResponseEntity.ok(clansmen);
+    }
+
     @PostMapping("/post")
-    public ResponseEntity<String> post(@RequestParam String text, Principal principal){
+    public ResponseEntity<Post> post(@RequestParam String text, Principal principal){
 
         User user = userRepository.findByUsername(principal.getName());
 
@@ -121,11 +146,24 @@ public class ClanController {
 
         Clan clan = user.getClan();
 
-        clan.getPosts().add(new ClanPost(text, user));
+        ClanPost post = new ClanPost(text, user);
+        post.setClan(clan);
+        clan.getPosts().add(post);
 
         clanRepository.save(clan);
 
-        return  ResponseEntity.ok(null);
+        return  ResponseEntity.ok(new Post(new Clansman(user.getUsername(), user.getImageId()), post.getDatePosted(), post.getPostText()));
+    }
+
+    @GetMapping("/posts")
+    public ResponseEntity<List<Post>> getPosts(Principal principal){
+
+        User user = userRepository.findByUsername(principal.getName());
+
+        if (user.getClan() == null)
+            return ResponseEntity.badRequest().body(null);
+
+        return ResponseEntity.ok(clanPostRepository.getPosts(user.getClan()));
     }
 
     @GetMapping("/get")
@@ -134,5 +172,28 @@ public class ClanController {
             return ResponseEntity.ok(clanRepository.getRows());
         else
             return ResponseEntity.ok(clanRepository.getRowsByQuery(query.toLowerCase()));
+    }
+
+    @GetMapping("/myClan")
+    public ResponseEntity<ClanDto> getClan(Principal principal){
+        Clan clan = userRepository.findByUsername(principal.getName()).getClan();
+        return ResponseEntity.ok(new ClanDto(clan.getName(),clan.getDescription(), clan.getImageId()));
+    }
+
+    @PostMapping("/descript")
+    public ResponseEntity<String> setDescription(@RequestParam String description, Principal principal){
+
+        User user = userRepository.findByUsername(principal.getName());
+
+        Clan clan = user.getClan();
+
+        if (clan == null || clan.getLeader().getUserId() != user.getUserId())
+            return ResponseEntity.badRequest().body("User is not in a clan or is not a leader");
+
+        clan.setDescription(description);
+
+        clanRepository.save(clan);
+
+        return ResponseEntity.ok(description);
     }
 }
