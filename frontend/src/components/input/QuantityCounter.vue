@@ -16,17 +16,29 @@
     export default {
         name: "QuantityCounter",
         props: {
-            value: Number
+            value: 0,
+            min: Number,
+            max: Number
+        },
+        data(){
+            return{
+                val: this.value
+            }
         },
         methods: {
             inc(){
-                this.value++;
+                if (!this.max || this.value + 1 <= this.max) {
+                    this.value++;
+                    this.$emit('input',this.value);
+                }
             },
             dec(){
-                if (this.value <= 0) return;
-                this.value--;
+                if (!this.min || this.value - 1 >= this.min) {
+                    this.value--;
+                    this.$emit('input', this.value);
+                }
             }
-        }
+        },
     }
 </script>
 

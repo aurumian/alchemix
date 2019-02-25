@@ -4,40 +4,49 @@
             <img :src="imgsrc">
         </div>
         <div id="iname">
-            {{this.name}} x{{this.quantity}}   Tier : {{tier}}
+            {{this.name}} x{{this.quantity<0?'&#8734;':this.quantity}}   Tier : {{tier}}
         </div>
         <div id="money">
               Price:
             <br/>
-            {{price}}
+            {{price*val}}
         </div>
         <div id="describe">
             {{description}}
         </div>
         <div id="but">
-            <button>
+            <button v-on:click="buy">
                 Buy
             </button>
         </div>
         <div id="quantityButs">
-            <quantity-counter value="0"></quantity-counter>
+            <quantity-counter v-model="val" :min="1" :max="quantity<0?null:quantity" ref="count"></quantity-counter>
         </div>
     </div>
 </template>
 
 <script>
-    import QuantityCounter from "./QuantityCounter";
+    import QuantityCounter from "./input/QuantityCounter";
     export default {
         name: "MarketItem",
         components: {QuantityCounter},
+        data(){
+            return{
+                val: 1
+            }
+        },
         props: {
             imgsrc: String,
             name: String,
             quantity: Number,
             description: String,
             tier: Number,
-            price: Number,
-            quantityBut: Number
+            price: Number
+        },
+        methods:{
+            buy(){
+                console.log(this.$refs.count.value);
+            }
         }
     }
 </script>

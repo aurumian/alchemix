@@ -23,33 +23,12 @@
         components: {MarketItem},
         methods:{
             getItems(){
-
-                this.items = [
-                    {
-                        imageId: 2,
-                        name: "Liquid fire",
-                        quantity: 1,
-                        description: "Harvested from fiery depths of hell",
-                        tier: 3,
-                        price: 500
-                    },
-                    {
-                        imageId: 3,
-                        name: "Liquid Ice",
-                        quantity: 1,
-                        description: "Harvested from icy deserts of Pluto",
-                        tier: 3,
-                        price: 300
-                    }
-                ]
-
-                /*
-                axios.get("/api/admin/inventory").then((resp)=>{
+                axios.get("/api/shop/market").then((resp)=>{
                     if (resp.status === 200)
                     this.items = resp.data;
                     else alert("Could not fetch data");
                 })
-                */
+
             },
             handleInput(){
                 this.filterKey = this.$refs.filterKey.value;
