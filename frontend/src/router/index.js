@@ -12,6 +12,9 @@ import AssetBundlePage from '../components/admin/AssetBundlePage'
 import Clan from '../components/clan/Clan'
 import FullInventory from '../components/FullInventory'
 import Recipes from '../components/Recipes'
+import Market from '../components/Market'
+import Shop from '../components/Shop'
+import Store from '../components/Store'
 
 Vue.use(Router);
 
@@ -48,6 +51,20 @@ export default new Router({
                 {
                     path: 'clan',
                     component: Clan
+                },
+                {
+                    path: 'shop',
+                    component: Shop,
+                    children: [
+                        {
+                            path: 'market',
+                            component: Market
+                        },
+                        {
+                            path: 'store',
+                            component: Store
+                        }
+                    ]
                 }
             ]
         },

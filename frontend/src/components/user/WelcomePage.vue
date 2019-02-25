@@ -30,7 +30,7 @@
 
 <style scoped>
     .wpMain{
-        background-image: linear-gradient(#ffe8ed, #ffcccc);
+
     }
     .myBar{
         grid-area: header;
@@ -49,7 +49,7 @@
             '. sidebar main .';
         width: 100%;
         height: 700px;
-        background-image: linear-gradient(#ffe8ed, #ffcccc);
+
         margin: auto;
     }
 

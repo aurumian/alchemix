@@ -55,6 +55,7 @@
         font-size: 28px;
         text-align: center;
         text-align-all: center;
+        padding-top: 13px;
     }
     input{
         background-color: rgba(255, 1, 0, 0.4);
