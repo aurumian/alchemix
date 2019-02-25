@@ -49,7 +49,7 @@
     #main{
         margin-bottom: 20px;
         width: 510px;
-        height: 200px;
+        height: auto;
         background: #ffcccc;
         font-family: fantasy;
         font-size: 22px;
@@ -100,5 +100,6 @@
         text-align: left;
         color: #9c403f;
         margin-left: 10px;
+        padding-bottom: 8px;
     }
 </style>

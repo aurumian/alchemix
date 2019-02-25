@@ -16,14 +16,19 @@
         },
         methods:{
             clicked(){
+                if (!this.$refs.text.value)
+                    return;
+
                 let formData = new FormData();
 
                 formData.append('text', this.$refs.text.value);
 
                 axios.post("/api/clan/post", formData).then(resp =>{
-                    if (resp.status === 200)
+                    if (resp.status === 200) {
+                        this.$refs.text.value = '';
                         if (this.callback)
-                        this.callback(resp.data);
+                            this.callback(resp.data);
+                    }
                 })
             }
         }
