@@ -4,7 +4,8 @@
             <input type="text" id="bar" placeholder="Type here to search" ref="filterKey" v-on:input="handleInput">
         </div>
         <div id="inventor">
-            <market-item v-for="entry in filteredItems" :imgsrc='"/api/image/" + entry.imageId' :name="entry.name" :quantity="entry.quantity" :description="entry.description" :tier="entry.tier" :price="entry.price" :quantity-but="0"></market-item>
+            <market-item v-for="entry in filteredItems"  :store-resource="entry"
+            ></market-item>
         </div>
     </div>
 </template>

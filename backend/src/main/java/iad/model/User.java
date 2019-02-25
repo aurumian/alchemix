@@ -37,7 +37,7 @@ public class User {
     )
     private Set<Recipe> recipes;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "id.user", cascade = CascadeType.ALL)
     private Set<ResourceInventory> resourceInventory;
 
     @OneToMany(mappedBy = "id.seller", cascade = CascadeType.ALL)

@@ -7,50 +7,34 @@ import java.io.Serializable;
 @Table(name = "RESOURCE_INVENTORY")
 public class ResourceInventory implements Serializable{
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @EmbeddedId
+    private ResourceInventoryKey id;
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "resource_id")
-    private Resource resource;
+    private long quantity;
 
-    private int quantity;
-
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 
-    public User getUser() {
-        return user;
+    public ResourceInventory(){
+
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public ResourceInventory(ResourceInventoryKey id, long quantity){
+        this.id = id;
+        this.quantity = quantity;
     }
 
-    public Resource getResource() {
-        return resource;
+    public ResourceInventoryKey getId() {
+        return id;
     }
 
-    public void setResource(Resource resource) {
-        this.resource = resource;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof ResourceInventory)) return false;
-
-        ResourceInventory other = (ResourceInventory) obj;
-
-        return this.resource.getResourceId() == other.resource.getResourceId() &&
-                this.user.getUserId() == other.user.getUserId();
+    public void setId(ResourceInventoryKey id) {
+        this.id = id;
     }
 }
 

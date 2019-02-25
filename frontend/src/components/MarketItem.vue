@@ -1,18 +1,18 @@
 <template>
     <div id="invent">
         <div id="inimg">
-            <img :src="imgsrc">
+            <img :src="'/api/image/' + storeResource.imageId">
         </div>
         <div id="iname">
-            {{this.name}} x{{this.quantity<0?'&#8734;':this.quantity}}   Tier : {{tier}}
+            {{storeResource.name}} x{{storeResource.quantity<0?'&#8734;':storeResource.quantity}}   Tier : {{storeResource.tier}}
         </div>
         <div id="money">
               Price:
             <br/>
-            {{price*val}}
+            {{storeResource.price*val}}
         </div>
         <div id="describe">
-            {{description}}
+            {{storeResource.description}}
         </div>
         <div id="but">
             <button v-on:click="buy">
@@ -27,6 +27,8 @@
 
 <script>
     import QuantityCounter from "./input/QuantityCounter";
+    import axios from 'axios'
+
     export default {
         name: "MarketItem",
         components: {QuantityCounter},
@@ -36,16 +38,25 @@
             }
         },
         props: {
-            imgsrc: String,
-            name: String,
-            quantity: Number,
-            description: String,
-            tier: Number,
-            price: Number
+            storeResource: {}
         },
         methods:{
             buy(){
-                console.log(this.$refs.count.value);
+
+                if (this.user.money < this.val*this.storeResource.price) {
+                    //user doesn't have enough money
+                    return;
+                }
+
+                let formData = new FormData();
+                formData.append('resourceId', this.storeResource.resourceId);
+                formData.append('quantity', this.val);
+                formData.append('sellerId', this.storeResource.sellerId);
+
+                axios.post("/api/shop/buy", formData).then(resp => {
+
+                })
+
             }
         }
     }

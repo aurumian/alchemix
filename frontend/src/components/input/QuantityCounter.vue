@@ -20,11 +20,12 @@
             min: Number,
             max: Number
         },
+        /*
         data(){
             return{
                 val: this.value
             }
-        },
+        },*/
         methods: {
             inc(){
                 if (!this.max || this.value + 1 <= this.max) {
