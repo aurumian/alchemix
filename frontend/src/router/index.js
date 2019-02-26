@@ -15,6 +15,7 @@ import Recipes from '../components/Recipes'
 import Market from '../components/Market'
 import Shop from '../components/Shop'
 import Store from '../components/Store'
+import AddRecipe from '../components/admin/AddRecipe'
 
 Vue.use(Router);
 
@@ -87,6 +88,10 @@ export default new Router({
                 {
                     path: 'asset_bundle',
                     component: AssetBundlePage
+                },
+                {
+                    path: 'recipe',
+                    component: AddRecipe
                 }
             ]
         }
