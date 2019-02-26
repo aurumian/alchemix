@@ -61,7 +61,7 @@
         background: red;
     }
     #main[class~=mobile]{
-        margin-top: 20px;
+        margin-top: 0;
         width: 100%;
         height: 65px;
         background: #ffcccc;

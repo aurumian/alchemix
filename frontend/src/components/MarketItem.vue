@@ -141,4 +141,30 @@
     #qua:focus{
         outline: none;
     }
+
+    #invent[class~=mobile]{
+        alignment: center;
+        margin-bottom: 20px;
+        width: 100%;
+        height: auto;
+        background: #ffcccc;
+        display: grid;
+        grid-template-columns: auto ;
+        grid-row-gap: 10px;
+        grid-column-gap: 15px;
+        grid-template-rows: auto 50px 70px;
+        grid-template-areas:
+                'image'
+                'name'
+                'description'
+                'quantityButs '
+                'price '
+                'button ';
+    }
+    #iname[class~=mobile]{
+        text-align: center;
+    }
+    #describe[class~=mobile]{
+        text-align: center;
+    }
 </style>

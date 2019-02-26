@@ -96,4 +96,13 @@
         color: #7b0009;
 
     }
+
+    #main[class~=mobile] textarea{
+        width: 95%;
+    }
+    #main[class~=mobile] textarea:focus{
+        outline: none;
+        border: solid 2px #c66a63;
+        border-radius: 5px;
+    }
 </style>
