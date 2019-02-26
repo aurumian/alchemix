@@ -23,31 +23,12 @@
         components: {InventoryItem},
         methods:{
             getItems(){
-
-                this.items = [
-                    {
-                        imageId: 2,
-                        name: "Liquid fire",
-                        quantity: 1,
-                        description: "Harvested from fiery depths of hell",
-                        tier: 3
-                    },
-                    {
-                        imageId: 3,
-                        name: "Liquid Ice",
-                        quantity: 1,
-                        description: "Harvested from icy deserts of Pluto",
-                        tier: 3
-                    }
-                ]
-
-                /*
-                axios.get("/api/admin/inventory").then((resp)=>{
+                axios.get("/api/inventory/my-resources").then((resp)=>{
                     if (resp.status === 200)
                     this.items = resp.data;
                     else alert("Could not fetch data");
                 })
-                */
+
             },
             handleInput(){
                 this.filterKey = this.$refs.filterKey.value;

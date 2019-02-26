@@ -2,7 +2,7 @@
     <div id="main">
         <div id="menu">
             <router-button to="/clan" text="MyClan"></router-button>
-            <router-button to="/fullinventory/inventory" text="MyInventory"></router-button>
+            <router-button to="/inventory" text="MyInventory"></router-button>
             <router-button to="/craft" text="Craft"></router-button>
             <router-button to="/shop/market" text="Shop"></router-button>
             <button v-on:click="logout">Log Out</button>

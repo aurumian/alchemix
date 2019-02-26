@@ -12,4 +12,16 @@ public class ResourceDto {
 
     public long assetBundleId;
 
+    public ResourceDto(){
+
+    }
+
+    public ResourceDto(String name, String description, long tier, long imageId, long assetBundleId){
+        this.name = name;
+        this.description = description;
+        this.tier = tier;
+        this.imageId = imageId;
+        this.assetBundleId = assetBundleId;
+    }
+
 }

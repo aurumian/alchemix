@@ -34,11 +34,11 @@ export default new Router({
                     component: UnityGame
                 },
                 {
-                    path: 'fullinventory',
+                    path: 'inventory',
                     component: FullInventory,
                     children:[
                         {
-                            path: 'inventory',
+                            path: '',
                             component: Inventory
                         },
                         {
