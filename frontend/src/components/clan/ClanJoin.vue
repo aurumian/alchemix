@@ -110,6 +110,7 @@
         text-align: center;
     }
     #item[class~=mobile]{
+        alignment: center;
         margin-bottom: 20px;
         width: 100%;
         height: auto;

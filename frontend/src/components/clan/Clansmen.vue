@@ -39,5 +39,11 @@
 
     #main[class~=mobile]{
         width: 100%;
+        margin-bottom: 0;
+        max-height: 150px;
+        overflow: scroll;
+    }
+    #main[class~=mobile]::-webkit-scrollbar{
+        display: none;
     }
 </style>

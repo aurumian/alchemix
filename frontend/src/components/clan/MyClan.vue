@@ -91,7 +91,7 @@
         margin-left: 0;
         display: grid;
         grid-template-columns: auto;
-        grid-row-gap: 10px;
+        grid-row-gap: 20px;
 
 
         grid-template-areas:

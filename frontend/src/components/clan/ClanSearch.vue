@@ -70,6 +70,7 @@
 
     #search[class~=mobile]{
         width: 100%;
+        margin-top: 0;
     }
 
     #search[class~=mobile] input{
