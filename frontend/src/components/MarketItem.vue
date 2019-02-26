@@ -20,7 +20,7 @@
             </button>
         </div>
         <div id="quantityButs">
-            <quantity-counter v-model="val" :min="1" :max="quantity<0?null:quantity" ref="count"></quantity-counter>
+            <quantity-counter v-model="val" :min="1" :max="storeResource.quantity<0?null:storeResource.quantity" ref="count"></quantity-counter>
         </div>
     </div>
 </template>
@@ -54,7 +54,7 @@
                 formData.append('sellerId', this.storeResource.sellerId);
 
                 axios.post("/api/shop/buy", formData).then(resp => {
-
+                    window.Store.update();
                 })
 
             }
