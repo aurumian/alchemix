@@ -2,6 +2,7 @@ package iad.service;
 
 import iad.model.*;
 import iad.repository.ResourceOnSaleRepository;
+import iad.repository.ResourceRepository;
 import iad.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,13 +17,15 @@ public class ShopServiceImpl implements ShopService {
     private ResourceOnSaleRepository resourceOnSaleRepository;
 
     @Autowired
+    private ResourceRepository resourceRepository;
+
+    @Autowired
     private InventoryService inventoryService;
 
     @Override
     public long makePurchase(long resourceId, long quantity, long sellerId, String username) {
         if (quantity <= 0)
             throw new IllegalArgumentException("quantity must be greater than 0");
-
 
         User user = userRepository.findByUsername(username);
 
@@ -38,6 +41,9 @@ public class ShopServiceImpl implements ShopService {
 
         if (resourceOnSale.getQuantity() > 0 && resourceOnSale.getQuantity() < quantity)
             throw new IllegalArgumentException("requested resource on sale has less quantity then user attempts to buy");
+
+        if (resourceOnSale.getId().getSeller().getUserId() == user.getUserId())
+            throw new IllegalArgumentException("user cannot buy from himself");
 
 
         long total = resourceOnSale.getPrice()*quantity;
@@ -64,6 +70,34 @@ public class ShopServiceImpl implements ShopService {
             resourceOnSale.setQuantity(newQuantity);
             resourceOnSaleRepository.save(resourceOnSale);
         }
+
+        return newQuantity;
+    }
+
+    @Override
+    public long putResourceOnSale(long resourceId, long quantity, long price, String sellerUsername) {
+        //validate
+        if (quantity <= 0)
+            throw new IllegalArgumentException("quantity must be greater than 0");
+
+        if (price <= 0)
+            throw new IllegalArgumentException("price must be greater than 0");
+
+        User user = userRepository.findByUsername(sellerUsername);
+
+        if (user == null)
+            throw new IllegalArgumentException("user with username \"" + sellerUsername + "\" doesn't exist");
+
+        Resource resource = resourceRepository.findByResourceId(resourceId);
+
+        if (resource == null)
+            throw new IllegalArgumentException("resource with resourceId \"" + resourceId + "\" doesn't exist");
+
+        //remove from inventory
+        long newQuantity = inventoryService.removeResourceFromInventory(resource, user, quantity);
+
+        //actually put on sale
+        resourceOnSaleRepository.save(new ResourceOnSale(quantity, price, user, resource));
 
         return newQuantity;
     }

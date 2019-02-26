@@ -45,4 +45,32 @@ public class InventoryServiceImpl implements InventoryService{
     public List<ResourceInventoryDto> getUserInventory(String username) {
         return resourceInventoryRepository.getUserResources(userRepository.findByUsername(username));
     }
+
+    @Override
+    public long removeResourceFromInventory(Resource resource, User user, long quantity) {
+        if (quantity <= 0)
+            throw new IllegalArgumentException("quantity must be greater than 0");
+
+        ResourceInventoryKey id = new ResourceInventoryKey(user, resource);
+
+        ResourceInventory resourceInventory =
+                resourceInventoryRepository.findById(id);
+
+        if (resourceInventory == null)
+            throw new IllegalArgumentException("user doesn't have this resource in inventory");
+
+        long newQuantity = resourceInventory.getQuantity() - quantity;
+
+        if (newQuantity < 0)
+            throw new IllegalArgumentException("quantity must be less or equal to quantity of resource user has in inventory");
+
+        if (newQuantity == 0)
+            resourceInventoryRepository.delete(resourceInventory);
+        else {
+            resourceInventory.setQuantity(newQuantity);
+            resourceInventoryRepository.save(resourceInventory);
+        }
+
+        return newQuantity;
+    }
 }

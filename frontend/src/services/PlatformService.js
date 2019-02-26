@@ -20,6 +20,12 @@ export default {
         let divs = document.getElementsByTagName('div');
 
         for (let i = 0; i < divs.length; i++){
+            /*
+            if (divs[i].classList.contains(Class)){
+                //we don't need to change anything
+                return;
+            }
+            */
             divs[i].classList.remove('desktop', 'mobile');
             divs[i].classList.add(Class);
         }

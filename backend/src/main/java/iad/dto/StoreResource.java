@@ -2,8 +2,6 @@ package iad.dto;
 
 public class StoreResource extends ResourceDto{
 
-    public long resourceId;
-
     public long quantity;
 
     public long price;
@@ -15,10 +13,9 @@ public class StoreResource extends ResourceDto{
     }
 
     public StoreResource(String name, String description, long tier, long imageId, long quantity, long price, long sellerId, long resourceId){
-        super(name, description, tier, imageId, 0);
+        super(resourceId, name, description, tier, imageId, 0);
         this.quantity = quantity;
         this.price = price;
         this.sellerId = sellerId;
-        this.resourceId = resourceId;
     }
 }

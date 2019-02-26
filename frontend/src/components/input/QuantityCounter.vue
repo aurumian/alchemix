@@ -16,7 +16,9 @@
     export default {
         name: "QuantityCounter",
         props: {
-            value: 0,
+            value: {
+                default: 0
+            },
             min: Number,
             max: Number
         },
@@ -40,6 +42,10 @@
                 }
             }
         },
+        mounted(){
+            if (this.value < this.min)
+                this. value = this.min;
+        }
     }
 </script>
 

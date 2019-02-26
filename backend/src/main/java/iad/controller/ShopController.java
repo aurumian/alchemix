@@ -1,5 +1,6 @@
 package iad.controller;
 
+import iad.dto.ResourceInventoryDto;
 import iad.dto.StoreResource;
 import iad.model.*;
 import iad.repository.ResourceInventoryRepository;
@@ -48,6 +49,12 @@ public class ShopController {
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @PostMapping("/putOnSale")
+    public ResponseEntity<Long> putResourceOnSale(@RequestParam long resourceId, @RequestParam long quantity,
+                                                    @RequestParam long price, Principal principal){
+        return ResponseEntity.ok(shopService.putResourceOnSale(resourceId, quantity, price, principal.getName()));
     }
 
 }

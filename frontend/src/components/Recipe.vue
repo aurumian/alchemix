@@ -7,13 +7,14 @@
             {{this.name}}   Tier : {{tier}}
         </div>
         <div id="describe">
-            <resource-instance tier="1" name="icy water" quantity="2"></resource-instance>
-            <resource-instance tier="1" name="icy water" quantity="2"></resource-instance>
-            <resource-instance tier="1" name="icy water" quantity="2"></resource-instance>
-            <resource-instance tier="1" name="icy water with ice" quantity="2"></resource-instance>
-            <resource-instance tier="1" name="icy water" quantity="2"></resource-instance>
-            <resource-instance tier="1" name="icy water" quantity="2"></resource-instance>
-            <resource-instance tier="1" name="icy water" quantity="2"></resource-instance>
+            <resource-instance :tier="1" name="icy water" :quantity="2"></resource-instance>
+            <resource-instance :tier="1" name="icy water" :quantity="2"></resource-instance>
+            <resource-instance :tier="1" name="icy water" :quantity="2"></resource-instance>
+            <resource-instance :tier="1" name="icy water with ice" :quantity="2"></resource-instance>
+            <resource-instance :tier="1" name="icy water" :quantity="2"></resource-instance>
+            <resource-instance :tier="1" name="icy water" :quantity="2"></resource-instance>
+            <resource-instance :tier="1" name="icy water" :quantity="2"></resource-instance>
+            <resource-instance :tier="1" name="icy water with ice" :quantity="2"></resource-instance>
 
 
         </div>

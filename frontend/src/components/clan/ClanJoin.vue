@@ -6,9 +6,6 @@
         <div id="iname">
             {{this.clan.name}}
         </div>
-        <div id="money">
-
-        </div>
         <div id="describe">
             {{clan.description}}
         </div>
@@ -52,9 +49,6 @@
 </script>
 
 <style scoped>
-    #money{
-        grid-area: price;
-    }
     #iname{
         grid-area: name;
         font-family: fantasy;
@@ -74,6 +68,11 @@
         margin: 10px;
         border-radius: 50%;
         width: 200px;
+    }
+    img[class~=mobile]{
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
     }
     #inimg{
         grid-area: image;
@@ -110,13 +109,14 @@
         text-align: center;
     }
     #item[class~=mobile]{
-        alignment: center;
+        align-items: center;
         margin-bottom: 20px;
         width: 100%;
         height: auto;
         background: #ffcccc;
         display: grid;
         grid-template-columns: auto ;
+        grid-column-gap: 0;
         grid-row-gap: 10px;
         grid-template-areas:
                 'image '

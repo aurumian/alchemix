@@ -2,6 +2,8 @@ package iad.dto;
 
 public class ResourceDto {
 
+    public long resourceId;
+
     public String name;
 
     public String description;
@@ -16,12 +18,13 @@ public class ResourceDto {
 
     }
 
-    public ResourceDto(String name, String description, long tier, long imageId, long assetBundleId){
+    public ResourceDto(long resourceId, String name, String description, long tier, long imageId, long assetBundleId){
         this.name = name;
         this.description = description;
         this.tier = tier;
         this.imageId = imageId;
         this.assetBundleId = assetBundleId;
+        this.resourceId = resourceId;
     }
 
 }

@@ -4,9 +4,9 @@
             <input type="text" id="bar" placeholder="Type here to search" ref="filterKey" v-on:input="handleInput">
         </div>
         <div id="recipeList">
-            <recipe name="cool stuff" tier="1" description="the coolest"></recipe>
-            <recipe name="cool stuff" tier="1" description="the coolest"></recipe>
-            <recipe name="cool stuff" tier="1" description="the coolest"></recipe>
+            <recipe name="cool stuff" :tier="1" description="the coolest"></recipe>
+            <recipe name="cool stuff" :tier="1" description="the coolest"></recipe>
+            <recipe name="cool stuff" :tier="1" description="the coolest"></recipe>
         </div>
     </div>
 </template>

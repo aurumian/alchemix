@@ -14,4 +14,6 @@ public interface InventoryService {
     void addResourceToInventory(Resource resource, User user, long quantity);
 
     List<ResourceInventoryDto> getUserInventory(String username);
+
+    long removeResourceFromInventory(Resource resource, User user, long quantity);
 }

@@ -1,19 +1,22 @@
 <template>
     <div id="invent">
         <div id="inimg">
-            <img :src="imgsrc">
+            <img :src="'/api/image/' + inventoryResource.imageId">
         </div>
         <div id="iname">
-            {{this.name}} x{{this.quantity}}   Tier : {{tier}}
+            {{inventoryResource.name}} x {{inventoryResource.quantity}}   Tier : {{inventoryResource.tier}}
         </div>
         <div id="money">
-            <input type="text" placeholder="Price"/>
+            <input type="number" placeholder="Price" ref="price"/>
+        </div>
+        <div id="quantityButs">
+            <quantity-counter ref="count" :min="1" v-model="quantity" :max="inventoryResource.quantity"></quantity-counter>
         </div>
         <div id="describe">
-            {{description}}
+            {{inventoryResource.description}}
         </div>
         <div id="but">
-            <button>
+            <button @click="sell">
                 Sell
             </button>
         </div>
@@ -21,19 +24,47 @@
 </template>
 
 <script>
+    import QuantityCounter from "./input/QuantityCounter";
+    import axios from 'axios'
     export default {
         name: "InventoryItem",
+        components: {QuantityCounter},
+        data(){
+            return{
+                quantity: 1
+            }
+        },
         props: {
-            imgsrc: String,
-            name: String,
-            quantity: Number,
-            description: String,
-            tier: Number
+            inventoryResource: {},
+            callback: Function
+        },
+        methods:{
+            sell(){
+                if (!this.$refs.price.value)
+                    return;
+
+                let formData = new FormData();
+                formData.append('resourceId', this.inventoryResource.resourceId);
+                formData.append('price', this.$refs.price.value);
+                formData.append('quantity', this.quantity);
+
+                axios.post("/api/shop/putOnSale", formData).then(resp => {
+                    if (resp.status === 200){
+                        let item = {
+                            resourceId: this.inventoryResource.resourceId,
+                            newQuantity: resp.data
+                        }
+                    }
+                })
+            }
         }
     }
 </script>
 
 <style scoped>
+    #quantityButs{
+        grid-area: quantityButs;
+    }
     #money{
         grid-area: price;
     }
@@ -75,7 +106,7 @@
         grid-column-gap: 15px;
         grid-template-rows: auto 50px 70px;
         grid-template-areas:
-        'image name . '
+        'image name quantityButs '
         'image description price '
         'image . button ';
     }
@@ -91,6 +122,7 @@
                 'image '
                 'name '
                 'description'
+                'quantityButs'
                 'price'
                 'button';
     }

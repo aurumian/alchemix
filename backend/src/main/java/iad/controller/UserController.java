@@ -60,7 +60,7 @@ public class UserController {
     @GetMapping("api/user/info")
     public ResponseEntity<UserDto> getUser(Principal principal){
         User user = userRepository.findByUsername(principal.getName());
-        return ResponseEntity.ok(new UserDto(user.getUsername(), user.getImageId(), user.getRole().getRole(),
+        return ResponseEntity.ok(new UserDto(user.getUserId(), user.getUsername(), user.getImageId(), user.getRole().getRole(),
                 user.getMoney(), clanRepository.existsByClansmen(user), clanRepository.existsByLeader(user)));
     }
 
@@ -68,8 +68,6 @@ public class UserController {
     public ResponseEntity<List<ResourceInventory>> getInventory(Principal principal){
 
         List<ResourceInventory> resources  = new ArrayList<>();
-
-        resources.add(new ResourceInventory());
 
         return ResponseEntity.ok(new ArrayList<>());
     }

@@ -4,8 +4,7 @@
             <input type="text" id="bar" placeholder="Type here to search" ref="filterKey" v-on:input="handleInput">
         </div>
         <div id="inventor">
-            <market-item v-for="entry in filteredItems"  :store-resource="entry"
-            ></market-item>
+            <market-item v-for="entry in filteredItems"  :store-resource="entry"></market-item>
         </div>
     </div>
 </template>
@@ -31,6 +30,13 @@
             },
             handleInput(){
                 this.filterKey = this.$refs.filterKey.value;
+            },
+            updateAfterPurchase(item){
+                if (item.newQuantity < 0)
+                    return;
+                if (item.newQuantity == 0)
+                    //remove from items
+                    this.items
             }
         },
         computed:{

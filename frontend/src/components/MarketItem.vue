@@ -43,8 +43,9 @@
         methods:{
             buy(){
 
-                if (this.user.money < this.val*this.storeResource.price) {
+                if (this.user.money < this.val*this.storeResource.price || this.user.userId === this.storeResource.sellerId) {
                     //user doesn't have enough money
+                    //or this user is the one who put the resource on sale
                     return;
                 }
 

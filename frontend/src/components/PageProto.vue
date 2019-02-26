@@ -13,9 +13,6 @@
                 <router-view></router-view>
             </div>
         </div>
-        {{innerWidth}}
-        <br>
-        {{outerWidth}}
     </div>
 </template>
 
@@ -25,17 +22,7 @@
     import Inventory from "./Inventory";
     export default {
         name: "PageProto",
-        components: {Inventory, SideMenu, PersonalBar},
-        data(){
-            return{
-                innerWidth: Number,
-                outerWidth: Number
-            }
-        },
-        mounted(){
-            this.innerWidth = window.innerWidth;
-            this.outerWidth = window.outerWidth;
-        }
+        components: {Inventory, SideMenu, PersonalBar}
     }
 </script>
 

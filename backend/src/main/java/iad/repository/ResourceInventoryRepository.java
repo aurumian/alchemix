@@ -1,6 +1,5 @@
 package iad.repository;
 
-import iad.dto.ResourceDto;
 import iad.dto.ResourceInventoryDto;
 import iad.model.ResourceInventory;
 import iad.model.ResourceInventoryKey;
@@ -14,7 +13,7 @@ public interface ResourceInventoryRepository extends CrudRepository<ResourceInve
 
     ResourceInventory findById(ResourceInventoryKey id);
 
-    @Query("select new iad.dto.ResourceInventoryDto(r.name, r.description, r.tier, r.imageId, r.assetBundleId, ri.quantity) " +
+    @Query("select new iad.dto.ResourceInventoryDto(r.resourceId, r.name, r.description, r.tier, r.imageId, r.assetBundleId, ri.quantity) " +
             "from ResourceInventory ri join iad.model.Resource r on ri.id.resource = r where ri.id.user = ?1")
     List<ResourceInventoryDto> getUserResources(User user);
 }
