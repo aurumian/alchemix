@@ -40,15 +40,12 @@ public class ShopController {
     }
 
     @PostMapping("/buy")
-    public ResponseEntity<String> buyResource(@RequestParam long resourceId, @RequestParam long quantity,
+    public ResponseEntity<Long> buyResource(@RequestParam long resourceId, @RequestParam long quantity,
                                             @RequestParam long sellerId ,Principal principal)
     {
-        try{
-            return ResponseEntity.ok(String.valueOf(
-                    shopService.makePurchase(resourceId, quantity, sellerId, principal.getName())));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        return ResponseEntity.ok(
+                    shopService.makePurchase(resourceId, quantity, sellerId, principal.getName()));
+
     }
 
     @PostMapping("/putOnSale")

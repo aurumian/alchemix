@@ -56,6 +56,14 @@
 
                 axios.post("/api/shop/buy", formData).then(resp => {
                     window.Store.update();
+                    if (resp.status === 200) {
+                        let item = {
+                            resourceId: this.storeResource.resourceId,
+                            sellerId: this.storeResource.sellerId,
+                            newQuantity: resp.data
+                        };
+                        this.$parent.updateAfterPurchase(item);
+                    }
                 })
 
             }

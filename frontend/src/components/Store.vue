@@ -4,7 +4,7 @@
             <input type="text" id="bar" placeholder="Type here to search" ref="filterKey" v-on:input="handleInput">
         </div>
         <div id="inventor">
-            <market-item v-for="entry in filteredItems"  :store-resource="entry"></market-item>
+            <market-item v-for="entry in filteredItems"  :store-resource="entry"  :key="entry.sellerId*items.length + entry.resourceId"></market-item>
         </div>
     </div>
 </template>
@@ -34,9 +34,16 @@
             updateAfterPurchase(item){
                 if (item.newQuantity < 0)
                     return;
-                if (item.newQuantity == 0)
-                    //remove from items
-                    this.items
+
+                for (let i = 0; i < this.items.length; i++)
+                    if (this.items[i].resourceId === item.resourceId && this.items[i].sellerId === item.sellerId){
+                        if (item.newQuantity === 0)
+                        //remove from items
+                        this.items.splice(i, 1);
+                        else
+                            this.items[i].quantity = item.newQuantity;
+                        return;
+                    }
             }
         },
         computed:{
@@ -60,14 +67,6 @@
 </script>
 
 <style scoped>
-    #inventor{
-        max-height: 680px;
-        overflow: scroll;
-    }
-    #inventor::-webkit-scrollbar{
-        display: none;
-    }
-
     #search{
         margin-bottom: 20px;
         width: 780px;

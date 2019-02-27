@@ -4,7 +4,7 @@
             <input type="text" id="bar" placeholder="Type here to search" ref="filterKey" v-on:input="handleInput">
         </div>
         <div id="inventor">
-            <inventory-item v-for="entry in filteredItems" :inventory-resource="entry"></inventory-item>
+            <inventory-item v-for="entry in filteredItems" :inventory-resource="entry" :key="entry.resourceId"></inventory-item>
         </div>
     </div>
 </template>
@@ -32,6 +32,20 @@
             },
             handleInput(){
                 this.filterKey = this.$refs.filterKey.value;
+            },
+            updateAfterSell(item){
+                if (item.newQuantity < 0)
+                    return;
+
+                for (let i = 0; i < this.items.length; i++)
+                    if (this.items[i].resourceId === item.resourceId){
+                        if (item.newQuantity === 0)
+                        //remove from items
+                            this.items.splice(i, 1);
+                        else
+                            this.items[i].quantity = item.newQuantity;
+                        return;
+                    }
             }
         },
         computed:{

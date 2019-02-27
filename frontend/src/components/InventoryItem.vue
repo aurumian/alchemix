@@ -53,7 +53,8 @@
                         let item = {
                             resourceId: this.inventoryResource.resourceId,
                             newQuantity: resp.data
-                        }
+                        };
+                        this.$parent.updateAfterSell(item);
                     }
                 })
             }
