@@ -2,13 +2,13 @@
     <div id="main1">
             <div id="bar">
                 <div id="image">
-                    <img src="../assets/GreenConePotionSmall.png">
+                    <img :src="'/api/image/' + resource.imageId">
                 </div>
                 <div id="tier">
-                    Tier: {{tier}}
+                    Tier: {{resource.tier}}
                 </div>
                 <div id="name" >
-                    {{name}} x {{quantity}}
+                    {{resource.name}} x {{resource.quantity}}
                 </div>
 
 
@@ -21,10 +21,7 @@
     export default {
         name: "ResourceInstance",
         props: {
-            name: String,
-            imageId: String,
-            tier: Number,
-            quantity: Number
+            resource: {}
         }
     }
 </script>

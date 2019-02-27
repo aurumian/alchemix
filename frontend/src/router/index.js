@@ -15,7 +15,7 @@ import Recipes from '../components/Recipes'
 import Market from '../components/Market'
 import Shop from '../components/Shop'
 import Store from '../components/Store'
-import AddRecipe from '../components/admin/AddRecipe'
+import RecipePage from '../components/admin/RecipePage'
 
 Vue.use(Router);
 
@@ -91,7 +91,7 @@ export default new Router({
                 },
                 {
                     path: 'recipe',
-                    component: AddRecipe
+                    component: RecipePage
                 }
             ]
         }

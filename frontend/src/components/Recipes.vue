@@ -4,9 +4,7 @@
             <input type="text" id="bar" placeholder="Type here to search" ref="filterKey" v-on:input="handleInput">
         </div>
         <div id="recipeList">
-            <recipe name="cool stuff" :tier="1" description="the coolest"></recipe>
-            <recipe name="cool stuff" :tier="1" description="the coolest"></recipe>
-            <recipe name="cool stuff" :tier="1" description="the coolest"></recipe>
+            <recipe v-for="recipe in items" :recipe="recipe"></recipe>
         </div>
     </div>
 </template>
@@ -16,6 +14,14 @@
     import Recipe from "./Recipe";
     export default {
         name: "Recipes",
+        props:{
+            url:{
+                default: "/api/inventory/my-recipes"
+            },
+            displayId:{
+                default: false
+            }
+        },
         data(){
             return{
                 items: [],
@@ -25,31 +31,11 @@
         components: {Recipe},
         methods:{
             getItems(){
-
-                this.items = [
-                    {
-                        imageId: 2,
-                        name: "Liquid fire",
-                        quantity: 1,
-                        description: "Harvested from fiery depths of hell",
-                        tier: 3
-                    },
-                    {
-                        imageId: 3,
-                        name: "Liquid Ice",
-                        quantity: 1,
-                        description: "Harvested from icy deserts of Pluto",
-                        tier: 3
-                    }
-                ]
-
-                /*
-                axios.get("/api/admin/inventory").then((resp)=>{
+                axios.get(this.url).then((resp)=>{
                     if (resp.status === 200)
-                    this.items = resp.data;
-                    else alert("Could not fetch data");
+                        this.items = resp.data;
                 })
-                */
+
             },
             handleInput(){
                 this.filterKey = this.$refs.filterKey.value;

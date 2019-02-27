@@ -1,22 +1,14 @@
 <template>
     <div id="main">
+        <div id="resId" v-if="$parent.displayId">ResourceId: {{recipe.resResource.resourceId}}</div>
         <div id="inimg">
-            <img src="../assets/IndigoConePotionSmall.png">
+            <img :src="'/api/image/' + recipe.resResource.imageId">
         </div>
         <div id="iname">
-            {{this.name}}   Tier : {{tier}}
+            {{recipe.resResource.name}}   Tier : {{recipe.resResource.tier}}
         </div>
         <div id="describe">
-            <resource-instance :tier="1" name="icy water" :quantity="2"></resource-instance>
-            <resource-instance :tier="1" name="icy water" :quantity="2"></resource-instance>
-            <resource-instance :tier="1" name="icy water" :quantity="2"></resource-instance>
-            <resource-instance :tier="1" name="icy water with ice" :quantity="2"></resource-instance>
-            <resource-instance :tier="1" name="icy water" :quantity="2"></resource-instance>
-            <resource-instance :tier="1" name="icy water" :quantity="2"></resource-instance>
-            <resource-instance :tier="1" name="icy water" :quantity="2"></resource-instance>
-            <resource-instance :tier="1" name="icy water with ice" :quantity="2"></resource-instance>
-
-
+            <resource-instance v-for="resource in recipe.resources" :resource="resource"></resource-instance>
         </div>
     </div>
 </template>
@@ -27,15 +19,15 @@
         name: "Recipe",
         components: {ResourceInstance},
         props: {
-            imgsrc: String,
-            name: String,
-            description: String,
-            tier: Number
+            recipe: {}
         }
     }
 </script>
 
 <style scoped>
+    #resId{
+        grid-area: resId;
+    }
     #iname{
         grid-area: name;
         font-family: fantasy;
@@ -78,8 +70,9 @@
         grid-template-columns: 220px 540px;
         grid-row-gap: 10px;
         grid-column-gap: 15px;
-        grid-template-rows: auto 170px;
+        grid-template-rows: auto auto 170px;
         grid-template-areas:
+                'image resId'
                 'image name '
                 'image description';
     }

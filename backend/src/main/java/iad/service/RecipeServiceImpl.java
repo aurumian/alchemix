@@ -1,17 +1,21 @@
 package iad.service;
 
+import iad.dto.ResourceDto;
+import iad.dto.ResourceInventoryDto;
 import iad.dto.recipe.RecipeIn;
+import iad.dto.recipe.RecipeOut;
 import iad.dto.recipe.ResourceIn;
-import iad.model.Recipe;
-import iad.model.RecipeResource;
-import iad.model.RecipeResourceKey;
-import iad.model.Resource;
+import iad.model.*;
 import iad.repository.RecipeRepository;
 import iad.repository.ResourceRepository;
+import iad.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
 public class RecipeServiceImpl implements RecipeService{
@@ -21,6 +25,9 @@ public class RecipeServiceImpl implements RecipeService{
 
     @Autowired
     private RecipeRepository recipeRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public void addRecipe(RecipeIn recipeIn) {
@@ -40,5 +47,51 @@ public class RecipeServiceImpl implements RecipeService{
         }
 
         recipeRepository.save(recipe);
+    }
+
+    @Override
+    public List<RecipeOut> getUserRecipes(String username) {
+
+        User user = userRepository.findByUsername(username);
+
+        List<RecipeOut> res = new ArrayList<>(user.getRecipes().size());
+
+        for (Recipe recipe: user.getRecipes()){
+            Resource rr = recipe.getResultResource();
+            RecipeOut recipeOut = new RecipeOut(new ResourceDto(rr.getResourceId(), rr.getName(), rr.getDescription(),
+                    rr.getTier(), rr.getImageId(), rr.getAssetBundleId()));
+
+            for (RecipeResource recRes: recipe.getResources()){
+                rr = resourceRepository.findByResourceId(recRes.getId().getResourceId());
+                recipeOut.resources.add(new ResourceInventoryDto(rr.getResourceId(), rr.getName(), rr.getDescription(),
+                        rr.getTier(), rr.getImageId(), rr.getAssetBundleId(), recRes.getQuantity()));
+            }
+
+            res.add(recipeOut);
+
+        }
+        return res;
+    }
+
+    @Override
+    public List<RecipeOut> getAllRecipes() {
+        List<RecipeOut> res = new LinkedList<>();
+
+        for (Recipe recipe: recipeRepository.findAll()){
+            Resource rr = recipe.getResultResource();
+            RecipeOut recipeOut = new RecipeOut(new ResourceDto(rr.getResourceId(), rr.getName(), rr.getDescription(),
+                    rr.getTier(), rr.getImageId(), rr.getAssetBundleId()));
+
+            for (RecipeResource recRes: recipe.getResources()){
+                rr = resourceRepository.findByResourceId(recRes.getId().getResourceId());
+                recipeOut.resources.add(new ResourceInventoryDto(rr.getResourceId(), rr.getName(), rr.getDescription(),
+                        rr.getTier(), rr.getImageId(), rr.getAssetBundleId(), recRes.getQuantity()));
+            }
+
+            res.add(recipeOut);
+
+        }
+
+        return res;
     }
 }
