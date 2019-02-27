@@ -1,6 +1,6 @@
 <template>
     <div id="main">
-        <div id="resId" v-if="$parent.displayId">ResourceId: {{recipe.resResource.resourceId}}</div>
+        <div id="resId" v-if="$parent.displayId">RecipeId: {{recipe.recipeId}}</div>
         <div id="inimg">
             <img :src="'/api/image/' + recipe.resResource.imageId">
         </div>

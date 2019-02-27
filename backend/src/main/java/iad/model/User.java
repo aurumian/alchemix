@@ -12,8 +12,9 @@ public class User {
     @SequenceGenerator(name = "user_seq", sequenceName = "userSeq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @Column(name = "USER_ID")
-    private long userId;
+    private Long userId;
 
+    @Column(unique = true)
     private String username;
 
     private String password;
@@ -33,7 +34,8 @@ public class User {
     @ManyToMany
     @JoinTable(
             name = "recipe_inventory",
-            joinColumns = @JoinColumn(name = "user_id")
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "recipe_id")
     )
     private Set<Recipe> recipes;
 

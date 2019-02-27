@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 
@@ -30,9 +31,13 @@ public class AssetBundleController {
         return ResponseEntity.ok(assetBundleRepository.getRows());
     }
 
-    @GetMapping("/api/asset_bundle/get/{name}")
-    public ResponseEntity<byte[]> getAssetBundle(@PathVariable String name){
-        return ResponseEntity.ok(assetBundleRepository.getByName(name).getBundle());
+    @GetMapping("/api/asset_bundle/get/**")
+    public ResponseEntity<byte[]> getAssetBundle(HttpServletRequest request){
+
+        String pathname = request.getRequestURI();
+        pathname = pathname.substring(pathname.indexOf("/get/")+5);
+
+        return ResponseEntity.ok(assetBundleRepository.getByName(pathname).getBundle());
     }
 
 }

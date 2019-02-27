@@ -3,6 +3,7 @@ package iad.controller;
 import iad.dto.ImageRow;
 import iad.model.Image;
 import iad.repository.ImageRepository;
+import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/api/image")
@@ -38,7 +40,8 @@ public class ImageController {
 
         ResponseEntity<byte[]> responseEntity;
         if (imageOptional.isPresent()){
-            responseEntity = new ResponseEntity<>(imageOptional.get().getData(), HttpStatus.OK);
+            responseEntity = ResponseEntity.ok().cacheControl(CacheControl.maxAge(7, TimeUnit.DAYS))
+                    .body(imageOptional.get().getData());
         }
         else
             responseEntity = ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

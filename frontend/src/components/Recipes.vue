@@ -4,7 +4,7 @@
             <input type="text" id="bar" placeholder="Type here to search" ref="filterKey" v-on:input="handleInput">
         </div>
         <div id="recipeList">
-            <recipe v-for="recipe in items" :recipe="recipe"></recipe>
+            <recipe v-for="recipe in filteredItems" :recipe="recipe" :key="recipe.recipeId"></recipe>
         </div>
     </div>
 </template>
@@ -48,7 +48,7 @@
 
                 if (filterKey && filterKey !== ''){
                     items = items.filter(item =>{
-                        return item.name.toLowerCase().indexOf(filterKey) > -1;
+                        return item.resResource.name.toLowerCase().indexOf(filterKey) > -1;
                     })
                 }
 

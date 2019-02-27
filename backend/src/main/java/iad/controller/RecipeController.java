@@ -33,7 +33,7 @@ public class RecipeController {
         return ResponseEntity.ok(recipeService.getAllRecipes());
     }
 
-    @GetMapping("/api/recipe/get")
+    @GetMapping("/api/inventory/my-recipes")
     public ResponseEntity<List<RecipeOut>> getRecipes(Principal principal){
         return ResponseEntity.ok(recipeService.getUserRecipes(principal.getName()));
     }

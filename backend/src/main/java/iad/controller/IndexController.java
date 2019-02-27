@@ -17,17 +17,22 @@ public class IndexController {
     }
 
     @GetMapping("/craft")
-    public String getIndex3(){
+    public String getIndex1(){
         return "forward:/";
     }
 
     @GetMapping("/clan")
-    public String getIndex4(){
+    public String getIndex2(){
         return "forward:/";
     }
 
-    @GetMapping("/inventory")
-    public String getIndex5(){
+    @GetMapping("/inventory/*")
+    public String getIndex3(){
+        return "forward:/";
+    }
+
+    @GetMapping("/shop/*")
+    public String getIndex4(){
         return "forward:/";
     }
 
