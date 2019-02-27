@@ -6,7 +6,7 @@
                     ResourceID
                 </td>
                 <td>
-                    <input type="number"/>
+                    <input type="number" min="1" v-model="resourceId"/>
                 </td>
             </tr>
             <tr>
@@ -14,7 +14,7 @@
                     Quantity
                 </td>
                 <td>
-                    <input type="number"/>
+                    <input type="number" min="1" v-model="quantity"/>
                 </td>
             </tr>
         </table>
@@ -23,7 +23,13 @@
 
 <script>
     export default {
-        name: "ResourceInstanceForm"
+        name: "ResourceInstanceForm",
+        data(){
+            return {
+                resourceId: Number,
+                quantity: 1
+            }
+        }
     }
 </script>
 

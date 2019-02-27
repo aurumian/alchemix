@@ -4,13 +4,13 @@
             <quantity-counter :min="1" v-model="count"></quantity-counter>
         </div>
         <div id="resources">
-            <resource-instance-form v-for="index in count"></resource-instance-form>
+            <resource-instance-form v-for="index in count" ref="resources"></resource-instance-form>
         </div>
         <div id="res">
-            ResResourceID <input type="number"/>
+            ResResourceID <input type="number" min="1" v-model="resId"/>
         </div>
         <div id="but">
-            <button>
+            <button @click="addRecipe">
                 Add Recipe
             </button>
         </div>
@@ -20,12 +20,39 @@
 <script>
     import QuantityCounter from "../input/QuantityCounter";
     import ResourceInstanceForm from "./ResourceInstanceForm";
+    import axios from 'axios'
+
     export default {
         name: "AddRecipe",
         components: {ResourceInstanceForm, QuantityCounter},
         data(){
             return{
-                count: 1
+                count: 1,
+                resId: Number
+            }
+        },
+        methods:{
+            addRecipe(){
+                if (!this.resId || this.resId <= 0) return;
+
+                let recipe = {
+                    resResourceId: this.resId,
+                    resources: Array()
+                };
+
+                let forms = this.$refs.resources;
+
+                for (let i = 0; i < forms.length; i++){
+                    let resourceId = forms[i].resourceId;
+                    let quantity = forms[i].quantity;
+                    if (resourceId <= 0 || quantity <= 0)
+                        //some of the data is invalid
+                        return;
+                    recipe.resources.push({resourceId, quantity})
+                }
+                this.count = 1;
+
+                axios.post("/admin/api/recipe/add", recipe);
             }
         }
     }
