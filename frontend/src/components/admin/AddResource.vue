@@ -35,10 +35,10 @@
             </tr>
             <tr>
                 <td>
-                    AssetBundleId:
+                    AssetName:
                 </td>
                 <td>
-                    <input type="number" ref="abId" min="1">
+                    <input type="text" ref="abId">
                 </td>
             </tr>
         </table>
@@ -64,7 +64,7 @@
                 axios.post('/admin/api/resource/create', resource).then(()=>{
 
                 }).catch((err)=>{
-                    console.log(err);
+                    alert(err);
                 })
             }
         }

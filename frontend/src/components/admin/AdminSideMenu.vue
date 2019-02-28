@@ -2,7 +2,7 @@
     <div id="main">
         <div id="menu">
             <router-button to="/admin/image" text="Image"></router-button>
-            <router-button to="/admin/asset_bundle" text="Asset Bundle"></router-button>
+            <router-button to="/admin/asset" text="Asset"></router-button>
             <router-button to="/admin/resource" text="Resource"></router-button>
             <router-button to="/admin/recipe" text="Recipe"></router-button>
             <router-button to="/admin/admins" text="Admin"></router-button>

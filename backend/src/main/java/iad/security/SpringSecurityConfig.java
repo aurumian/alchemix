@@ -60,7 +60,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/signup", "/api/auth", "/api/image/*", "/login")
                 .permitAll()
                 //temporary
-                .antMatchers("/api/asset_bundle/get/**")
+                .antMatchers("/admin/api/asset/table", "/api/file/get/**")
                 .permitAll()
                 //temporary
                 //*/

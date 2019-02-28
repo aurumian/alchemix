@@ -12,18 +12,18 @@ public class ResourceDto {
 
     public long imageId;
 
-    public long assetBundleId;
+    public String assetName;
 
     public ResourceDto(){
 
     }
 
-    public ResourceDto(long resourceId, String name, String description, long tier, long imageId, long assetBundleId){
+    public ResourceDto(long resourceId, String name, String description, long tier, long imageId, String assetName){
         this.name = name;
         this.description = description;
         this.tier = tier;
         this.imageId = imageId;
-        this.assetBundleId = assetBundleId;
+        this.assetName = assetName;
         this.resourceId = resourceId;
     }
 

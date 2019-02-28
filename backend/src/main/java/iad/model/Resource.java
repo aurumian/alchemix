@@ -22,19 +22,20 @@ public class Resource {
     @Column(name = "IMAGE_ID")
     private long imageId;
 
-    @Column(name = "ASSET_BUNDLE_ID")
-    private long assetBundleId;
+    @ManyToOne
+    @JoinColumn(name = "ASSET_ID", nullable = false)
+    private Asset asset;
 
     public Resource(){
 
     }
 
-    public Resource(ResourceDto resourceDto){
-        this.name = resourceDto.name;
-        this.tier = resourceDto.tier;
-        this.imageId = resourceDto.imageId;
-        this.assetBundleId = resourceDto.assetBundleId;
-        this.description = resourceDto.description;
+    public Resource(String name, long tier, long imageId, Asset asset, String description){
+        this.name = name;
+        this.tier = tier;
+        this.imageId = imageId;
+        this.asset = asset;
+        this.description = description;
     }
 
     public long getResourceId() {
@@ -62,14 +63,6 @@ public class Resource {
         this.tier = tier;
     }
 
-    public long getAssetBundleId() {
-        return assetBundleId;
-    }
-
-    public void setAssetBundleId(long assetBundleId) {
-        this.assetBundleId = assetBundleId;
-    }
-
     public long getImageId() {
         return imageId;
     }
@@ -84,5 +77,13 @@ public class Resource {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Asset getAsset() {
+        return asset;
+    }
+
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
 }

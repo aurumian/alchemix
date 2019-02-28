@@ -58,13 +58,13 @@ public class RecipeServiceImpl implements RecipeService{
 
         for (Recipe recipe: user.getRecipes()){
             Resource rr = recipe.getResultResource();
-            RecipeOut recipeOut = new RecipeOut(new ResourceDto(rr.getResourceId(), rr.getName(), rr.getDescription(),
-                    rr.getTier(), rr.getImageId(), rr.getAssetBundleId()));
+            RecipeOut recipeOut = new RecipeOut(recipe.getRecipeId() ,new ResourceDto(rr.getResourceId(), rr.getName(), rr.getDescription(),
+                    rr.getTier(), rr.getImageId(), rr.getAsset().getName()));
 
             for (RecipeResource recRes: recipe.getResources()){
                 rr = resourceRepository.findByResourceId(recRes.getId().getResourceId());
                 recipeOut.resources.add(new ResourceInventoryDto(rr.getResourceId(), rr.getName(), rr.getDescription(),
-                        rr.getTier(), rr.getImageId(), rr.getAssetBundleId(), recRes.getQuantity()));
+                        rr.getTier(), rr.getImageId(), rr.getAsset().getName(), recRes.getQuantity()));
             }
 
             res.add(recipeOut);
@@ -79,13 +79,13 @@ public class RecipeServiceImpl implements RecipeService{
 
         for (Recipe recipe: recipeRepository.findAll()){
             Resource rr = recipe.getResultResource();
-            RecipeOut recipeOut = new RecipeOut(new ResourceDto(rr.getResourceId(), rr.getName(), rr.getDescription(),
-                    rr.getTier(), rr.getImageId(), rr.getAssetBundleId()));
+            RecipeOut recipeOut = new RecipeOut(recipe.getRecipeId(), new ResourceDto(rr.getResourceId(), rr.getName(), rr.getDescription(),
+                    rr.getTier(), rr.getImageId(), rr.getAsset().getName()));
 
             for (RecipeResource recRes: recipe.getResources()){
                 rr = resourceRepository.findByResourceId(recRes.getId().getResourceId());
                 recipeOut.resources.add(new ResourceInventoryDto(rr.getResourceId(), rr.getName(), rr.getDescription(),
-                        rr.getTier(), rr.getImageId(), rr.getAssetBundleId(), recRes.getQuantity()));
+                        rr.getTier(), rr.getImageId(), rr.getAsset().getName(), recRes.getQuantity()));
             }
 
             res.add(recipeOut);

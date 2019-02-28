@@ -8,7 +8,7 @@ import AdminsPage from '../components/admin/AdminsPage'
 import ImageComp from '../components/admin/ImageComp'
 import Inventory from '../components/Inventory'
 import ResourcePage from '../components/admin/ResourcePage'
-import AssetBundlePage from '../components/admin/AssetBundlePage'
+import AssetPage from '../components/admin/AssetPage'
 import Clan from '../components/clan/Clan'
 import FullInventory from '../components/FullInventory'
 import Recipes from '../components/Recipes'
@@ -86,8 +86,8 @@ export default new Router({
                     component: AdminsPage
                 },
                 {
-                    path: 'asset_bundle',
-                    component: AssetBundlePage
+                    path: 'asset',
+                    component: AssetPage
                 },
                 {
                     path: 'recipe',

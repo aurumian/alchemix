@@ -2,6 +2,7 @@ package iad.controller;
 
 import iad.dto.ResourceDto;
 import iad.model.*;
+import iad.repository.AssetRepository;
 import iad.repository.ResourceOnSaleRepository;
 import iad.repository.ResourceRepository;
 import iad.repository.UserRepository;
@@ -29,6 +30,9 @@ public class ResourceController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AssetRepository assetRepository;
+
     public ResourceController(ResourceRepository resourceRepository){
         this.resourceRepository = resourceRepository;
     }
@@ -47,7 +51,8 @@ public class ResourceController {
 
     @PostMapping("/admin/api/resource/create")
     public ResponseEntity<Resource> addResource(@RequestBody ResourceDto resourceDto){
-        Resource resource = new Resource(resourceDto);
+        Resource resource = new Resource(resourceDto.name, resourceDto.tier, resourceDto.imageId,
+                assetRepository.getByName(resourceDto.assetName), resourceDto.description);
 
         return new ResponseEntity<>(resourceRepository.save(resource), HttpStatus.OK);
     }

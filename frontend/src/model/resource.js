@@ -3,13 +3,13 @@ export default class {
     description;
     tier;
     imageId;
-    assetBundleId;
+    assetName;
 
-    constructor(name, description, tier, imageId, assetBundleId){
+    constructor(name, description, tier, imageId, assetName){
         this.name = name;
         this.description = description;
         this.tier = tier;
         this.imageId = imageId;
-        this.assetBundleId = assetBundleId;
+        this.assetName = assetName;
     }
 }
