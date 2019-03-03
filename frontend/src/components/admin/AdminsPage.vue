@@ -1,7 +1,8 @@
 <template>
     <div>
         <addmin></addmin>
-        <add-money></add-money>
+        <add-money  class="marginBottom"></add-money>
+        <add-resource-to-inventory></add-resource-to-inventory>
     </div>
 
 </template>
@@ -10,12 +11,15 @@
 
     import Addmin from "./Addmin";
     import AddMoney from "./AddMoney";
+    import AddResourceToInventory from "./AddResourceToInventory";
     export default {
         name: "AdminsPage",
-        components: {AddMoney, Addmin}
+        components: {AddResourceToInventory, AddMoney, Addmin}
     }
 </script>
 
 <style scoped>
-
+    .marginBottom{
+        margin-bottom: 10px;
+    }
 </style>

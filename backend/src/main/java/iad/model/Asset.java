@@ -1,5 +1,7 @@
 package iad.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,12 +16,17 @@ public class Asset {
 
     private String name;
 
+    @Basic(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private byte[] data;
+
    public Asset(){
 
    }
 
-    public Asset(String name){
+    public Asset(String name, byte[] data){
        this.name = name;
+       this.data = data;
    }
 
     public Long getAssetId() {
@@ -36,5 +43,13 @@ public class Asset {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 }

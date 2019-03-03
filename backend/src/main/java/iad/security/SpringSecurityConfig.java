@@ -42,8 +42,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                    .cors()
-                    .and()
                     .csrf()
                 .disable()
                 .httpBasic()
@@ -60,7 +58,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/signup", "/api/auth", "/api/image/*", "/login")
                 .permitAll()
                 //temporary
-                .antMatchers("/admin/api/asset/table", "/api/file/get/**")
+                .antMatchers("/admin/api/asset/assets", "/api/asset/get/**")
                 .permitAll()
                 //temporary
                 //*/

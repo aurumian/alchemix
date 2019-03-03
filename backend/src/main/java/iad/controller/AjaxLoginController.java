@@ -26,8 +26,8 @@ public class AjaxLoginController {
 
     @PostMapping("/api/auth")
     public ResponseEntity<String> performLogin(
-            @RequestParam("username") String username,
-            @RequestParam("password") String password,
+            @RequestParam String username,
+            @RequestParam String password,
             HttpServletRequest request,
             HttpServletResponse response
     )throws AuthenticationException {

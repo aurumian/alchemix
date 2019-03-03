@@ -6,6 +6,7 @@ import iad.model.ResourceInventory;
 import iad.model.ResourceInventoryKey;
 import iad.model.User;
 import iad.repository.ResourceInventoryRepository;
+import iad.repository.ResourceRepository;
 import iad.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class InventoryServiceImpl implements InventoryService{
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ResourceRepository resourceRepository;
 
     @Override
     public void addResourceToInventory(Resource resource, User user, long quantity) {
@@ -72,5 +76,11 @@ public class InventoryServiceImpl implements InventoryService{
         }
 
         return newQuantity;
+    }
+
+    @Override
+    public void addResourceToInventory(long resourceId, String username, long quantity) {
+        addResourceToInventory(resourceRepository.findByResourceId(resourceId),
+                userRepository.findByUsername(username), quantity);
     }
 }

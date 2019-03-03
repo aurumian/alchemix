@@ -2,6 +2,8 @@
     <div id="main">
         Name: <input type="text" placeholder="Asset name" ref="name">
         <br>
+        File: <input type="file" ref="file"/>
+        <br>
         <button @click="createAsset">
             Create
         </button>
@@ -17,6 +19,7 @@
                 if (this.$refs.name.value){
                     let formData = new FormData();
                     formData.append('name', this.$refs.name.value);
+                    formData.append('file', this.$refs.file.files[0]);
 
                     axios.post('/admin/api/asset/create', formData).catch(err =>{
                             alert("couldn't create asset")

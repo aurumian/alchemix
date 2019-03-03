@@ -64,12 +64,6 @@ public class UserController {
                 user.getMoney(), clanRepository.existsByClansmen(user), clanRepository.existsByLeader(user)));
     }
 
-    @GetMapping("api/user/inventory")
-    public ResponseEntity<List<ResourceInventory>> getInventory(Principal principal){
 
-        List<ResourceInventory> resources  = new ArrayList<>();
-
-        return ResponseEntity.ok(new ArrayList<>());
-    }
 
 }

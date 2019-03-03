@@ -16,7 +16,7 @@
         name: "Inventory",
         data(){
             return{
-                items: [],
+                inventory: {},
                 filterKey: ""
             }
         },
@@ -25,7 +25,7 @@
             getItems(){
                 axios.get("/api/inventory/my-resources").then((resp)=>{
                     if (resp.status === 200)
-                    this.items = resp.data;
+                    this.inventory = resp.data;
                     else alert("Could not fetch data");
                 })
 
@@ -38,12 +38,12 @@
                     return;
 
                 for (let i = 0; i < this.items.length; i++)
-                    if (this.items[i].resourceId === item.resourceId){
+                    if (this.inventory.resources[i].resourceId === item.resourceId){
                         if (item.newQuantity === 0)
                         //remove from items
-                            this.items.splice(i, 1);
+                            this.inventory.resources.splice(i, 1);
                         else
-                            this.items[i].quantity = item.newQuantity;
+                            this.inventory.resources[i].quantity = item.newQuantity;
                         return;
                     }
             }
@@ -51,7 +51,7 @@
         computed:{
             filteredItems(){
                 let filterKey = this.filterKey && this.filterKey.toLowerCase();
-                let items = this.items;
+                let items = this.inventory.resources;
 
                 if (filterKey && filterKey !== ''){
                     items = items.filter(item =>{
