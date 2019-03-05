@@ -45,6 +45,8 @@ public class InventoryServiceImpl implements InventoryService{
         resourceInventoryRepository.save(resourceInventory);
     }
 
+
+
     @Override
     public List<ResourceInventoryDto> getUserInventory(String username) {
         return resourceInventoryRepository.getUserResources(userRepository.findByUsername(username));
@@ -79,8 +81,15 @@ public class InventoryServiceImpl implements InventoryService{
     }
 
     @Override
+    public long removeResourceFromInventory(long resourceId, String username, long quantity) {
+        return removeResourceFromInventory(resourceRepository.findByResourceId(resourceId), userRepository.findByUsername(username), quantity);
+    }
+
+    @Override
     public void addResourceToInventory(long resourceId, String username, long quantity) {
         addResourceToInventory(resourceRepository.findByResourceId(resourceId),
                 userRepository.findByUsername(username), quantity);
     }
+
+
 }

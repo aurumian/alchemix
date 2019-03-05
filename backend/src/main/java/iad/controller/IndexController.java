@@ -26,12 +26,12 @@ public class IndexController {
         return "forward:/";
     }
 
-    @GetMapping("/inventory/*")
+    @GetMapping("/inventory/**")
     public String getIndex3(){
         return "forward:/";
     }
 
-    @GetMapping("/shop/*")
+    @GetMapping("/shop/**")
     public String getIndex4(){
         return "forward:/";
     }

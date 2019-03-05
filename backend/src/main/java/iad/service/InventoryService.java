@@ -18,4 +18,6 @@ public interface InventoryService {
     List<ResourceInventoryDto> getUserInventory(String username);
 
     long removeResourceFromInventory(Resource resource, User user, long quantity);
+
+    long removeResourceFromInventory(long resourceId, String username, long quantity);
 }
