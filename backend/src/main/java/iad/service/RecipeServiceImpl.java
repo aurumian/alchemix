@@ -7,15 +7,13 @@ import iad.dto.recipe.RecipeOut;
 import iad.dto.recipe.ResourceIn;
 import iad.model.*;
 import iad.repository.RecipeRepository;
+import iad.repository.RecipeResourceRepository;
 import iad.repository.ResourceRepository;
 import iad.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class RecipeServiceImpl implements RecipeService{
@@ -29,6 +27,9 @@ public class RecipeServiceImpl implements RecipeService{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RecipeResourceRepository recipeResourceRepository;
+
     @Override
     public void addRecipe(RecipeIn recipeIn) {
         Recipe recipe = new Recipe();
@@ -36,6 +37,26 @@ public class RecipeServiceImpl implements RecipeService{
 
         if (resResource == null)
             throw new IllegalArgumentException("No resource found with resResourceId " + recipeIn.resResourceId);
+
+        //See if recipe with the same recipe_resources exists
+        Set<Long> recipes = recipeResourceRepository.getRecipeIds(recipeIn.resources.get(0).resourceId,
+                recipeIn.resources.get(0).quantity);
+        int count = 1;
+        while (count < recipeIn.resources.size() && recipes.size() > 0){
+            recipes.retainAll(recipeResourceRepository.getRecipeIds(recipeIn.resources.get(count).resourceId,
+                    recipeIn.resources.get(count).quantity));
+            count ++;
+        }
+        Recipe other = null;
+
+        //look through resulting recipes for one with the same number of ingredients as the recipeIn's
+        for (long recipeId: recipes)
+            if (recipeResourceRepository.countRecipeResourceById_Recipe_RecipeId(recipeId) == recipeIn.resources.size()){
+                other = recipeRepository.findOneByRecipeId(recipeId);
+                break;
+            }
+        if (other != null)
+            throw new RuntimeException("Recipe with this ingredients exists");
 
         recipe.setResultResource(resResource);
         recipe.setResources(new HashSet<>());

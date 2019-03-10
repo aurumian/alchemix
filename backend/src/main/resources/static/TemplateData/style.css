@@ -14,8 +14,8 @@
 
 .webgl-content .logo {
     background: url('progressLogo.Light.png') no-repeat center / contain;
-    width: 154px;
-    height: 130px;
+    width: 350px;
+    height: 123px;
 }
 
 .webgl-content .progress {

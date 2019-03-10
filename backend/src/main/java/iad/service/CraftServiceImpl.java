@@ -1,13 +1,12 @@
 package iad.service;
 
+import iad.dto.ResourceDto;
 import iad.dto.recipe.RecipeIn;
 import iad.dto.recipe.ResourceIn;
-import iad.model.Recipe;
-import iad.model.RecipeResource;
-import iad.model.RecipeResourceKey;
-import iad.model.User;
+import iad.model.*;
 import iad.repository.RecipeRepository;
 import iad.repository.RecipeResourceRepository;
+import iad.repository.ResourceRepository;
 import iad.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,19 +20,22 @@ import java.util.Set;
 public class CraftServiceImpl implements CraftService{
 
     @Autowired
-    InventoryService inventoryService;
+    private InventoryService inventoryService;
 
     @Autowired
-    RecipeRepository recipeRepository;
+    private RecipeRepository recipeRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private ResourceRepository resourceRepository;
 
     @Autowired
     private RecipeResourceRepository recipeResourceRepository;
 
     @Override
-    public void craft(RecipeIn recipeIn, String username) {
+    public ResourceDto craft(RecipeIn recipeIn, String username) {
 
         //get recipe resources
         //and remove resources from user inventory
@@ -54,22 +56,28 @@ public class CraftServiceImpl implements CraftService{
         }
         Recipe recipe = null;
 
-        if (recipes.size() == 1){
-            long recipeId = recipes.iterator().next();
+        //look through resulting recipes for one with the same number of ingredients as the recipeIn's
+        for (long recipeId: recipes)
             if (recipeResourceRepository.countRecipeResourceById_Recipe_RecipeId(recipeId) == recipeIn.resources.size()){
                 recipe = recipeRepository.findOneByRecipeId(recipeId);
+                break;
             }
-        }
 
+
+        Resource resource;
         if (recipe == null)
-            //temporary, until we make default craft resource (low-poly poo)
-            throw new RuntimeException("No such recipe");
+            resource = resourceRepository.findByResourceId(4);
+        else
+            resource = recipe.getResultResource();
 
         User user = userRepository.findByUsername(username);
         //Add crafted resource user resource inventory
-        inventoryService.addResourceToInventory(recipe.getResultResource(), user, 1);
+        inventoryService.addResourceToInventory(resource, user, 1);
 
         //Update user recipe inventory if user discovered new recipe
         user.getRecipes().add(recipe);
+
+        return new ResourceDto(resource.getResourceId(), resource.getName(), resource.getDescription(),
+                resource.getTier(), resource.getImageId(), resource.getAsset().getName());
     }
 }

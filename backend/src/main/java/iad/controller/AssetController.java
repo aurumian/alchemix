@@ -19,9 +19,15 @@ public class AssetController {
     private AssetRepository assetRepository;
 
     @PostMapping("/admin/api/asset/create")
-    public ResponseEntity<Long> saveAssetBundle(@RequestParam MultipartFile file) throws IOException {
+    public ResponseEntity<Long> saveAssetBundle(@RequestParam MultipartFile file, @RequestParam String name ,@RequestParam(required = false) Boolean update) throws IOException {
 
-        Asset asset = assetRepository.save(new Asset(file.getOriginalFilename(), file.getBytes()));
+        Asset asset = assetRepository.getByName(name);
+        if (asset != null && update != null && update) {
+            asset.setData(file.getBytes());
+            assetRepository.save(asset);
+        }
+        else
+            asset = assetRepository.save(new Asset(name, file.getBytes()));
 
         return ResponseEntity.ok(asset.getAssetId());
     }
@@ -43,7 +49,7 @@ public class AssetController {
         String name = request.getRequestURI();
         name = name.substring(15);
 
-        System.out.println("fetching asset: " + name);
+        //System.out.println("fetching asset: " + name);
 
         return ResponseEntity.ok().body(assetRepository.getByName(name).getData());
     }

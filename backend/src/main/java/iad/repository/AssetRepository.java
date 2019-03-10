@@ -10,4 +10,6 @@ public interface AssetRepository extends CrudRepository<Asset, Long> {
     Asset getByName(String name);
 
     List<Asset> findAll();
+
+
 }

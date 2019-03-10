@@ -20,15 +20,8 @@ public class CraftController {
 
     @PostMapping("/api/craft")
     public ResponseEntity craft(@RequestParam String recipeStr, Principal principal) throws IOException {
-
         ObjectMapper objectMapper = new ObjectMapper();
-
-        System.out.println(recipeStr);
-
         RecipeIn recipe = objectMapper.readValue(recipeStr, RecipeIn.class);
-
-        craftService.craft(recipe, principal.getName());
-
-        return ResponseEntity.ok("Crafted successfully");
+        return ResponseEntity.ok(craftService.craft(recipe, principal.getName()));
     }
 }

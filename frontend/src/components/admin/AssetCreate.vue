@@ -4,9 +4,12 @@
         <br>
         File: <input type="file" ref="file"/>
         <br>
+        Update: <input type="checkbox" ref="update"/>
+        <br>
         <button @click="createAsset">
             Create
         </button>
+        <br>
     </div>
 </template>
 
@@ -20,9 +23,10 @@
                     let formData = new FormData();
                     formData.append('name', this.$refs.name.value);
                     formData.append('file', this.$refs.file.files[0]);
+                    formData.append('update', this.$refs.update.value);
 
                     axios.post('/admin/api/asset/create', formData).catch(err =>{
-                            alert("couldn't create asset")
+                            alert("couldn't create or update asset")
                         }
                     )
                 }
