@@ -13,8 +13,7 @@
 
         </div>
         <hr/>
-        <div id="message">
-            {{message}}
+        <div id="message" v-html="message">
         </div>
     </div>
 </template>

@@ -1,16 +1,26 @@
 <template>
     <div id="main">
         <div align="center">
-            <input id="bar" type="text" ref="text"/>
+            <ckeditor :editor="editor" ref="text"></ckeditor>
             <button  v-on:click="clicked">Post</button>
         </div>
     </div>
 </template>
 
 <script>
+    import CKEditor from '@ckeditor/ckeditor5-vue'
+    import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
     import axios from 'axios'
     export default {
         name: "ClanPostCreate",
+        components:{
+            ckeditor: CKEditor.component
+        },
+        data(){
+            return {
+                editor: ClassicEditor
+            }
+        },
         props:{
             callback: Function
         },
@@ -39,7 +49,7 @@
     #main{
         margin-top: 20px;
         width: 510px;
-        height: 65px;
+        height: auto;
         background: #ffcccc;
     }
     button, input{
@@ -61,7 +71,7 @@
         background: red;
     }
     #main[class~=mobile]{
-        margin-top: 0;
+        margin: 0;
         width: 100%;
         height: 65px;
         background: #ffcccc;
